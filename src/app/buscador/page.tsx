@@ -5,10 +5,7 @@ import Link from 'next/link';
 import { Search, Filter, Calendar, Users, MapPin, User } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { Partido, Jugador } from '@/types';
-// import { partidos, jugadores } from '@/data/mock-data';
-
-const partidos: Partido[] = [];
-const jugadores: Jugador[] = [];
+import { partidos, jugadores } from '@/data/mock-data';
 import styles from './page.module.css';
 
 export default function BuscadorPage() {
