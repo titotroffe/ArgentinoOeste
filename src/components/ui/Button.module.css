@@ -1,0 +1,78 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid var(--ink-black);
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    /* Sombra sutil inicial */
+}
+
+/* Variants */
+.primary {
+    background-color: transparent;
+    /* Fondo transparente sutil */
+    color: var(--club-green) !important;
+    /* Texto verde */
+    border: 1px solid var(--club-green);
+    /* Borde verde */
+}
+
+.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.15);
+    /* Aumenta sombra al hover */
+    background-color: rgba(0, 51, 26, 0.05);
+    /* Fondo verde muy tenue al hover */
+}
+
+.primary:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.secondary {
+    background-color: #e0e0e0;
+    color: var(--ink-black);
+}
+
+.secondary:hover {
+    background-color: #d0d0d0;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.outline {
+    background-color: transparent;
+    border: 2px solid var(--club-green);
+    color: var(--club-green) !important;
+    font-weight: 900;
+}
+
+.outline:hover {
+    background-color: rgba(0, 51, 26, 0.05);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+    /* No cambiamos a color sólido o negro */
+}
+
+/* Sizes */
+.sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.md {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+}

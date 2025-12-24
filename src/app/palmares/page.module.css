@@ -1,0 +1,75 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--ink-light);
+}
+
+.title {
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.trophyList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.trophyItem {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid var(--ink-black);
+    background-color: #fff;
+}
+
+.trophyIcon {
+    font-size: 3rem;
+    color: #D4AF37;
+    /* Gold */
+    padding: 1rem;
+    border: 4px double #D4AF37;
+    border-radius: 50%;
+}
+
+.trophyDetails {
+    flex: 1;
+}
+
+.trophyName {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--club-green);
+}
+
+.trophyYear {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink-black);
+    margin-bottom: 1rem;
+}
+
+.trophyDesc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-light);
+}
+
+@media (max-width: 600px) {
+    .trophyItem {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,0 +1,108 @@
+.container {
+    max-width: 1200px;
+    /* Estandarizado */
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 80vh;
+}
+
+.cabinetContainer {
+    /* Fondo limpio transparente */
+    background-color: transparent;
+    border: 4px double var(--ink-black);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header Styles Unificados */
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: 4px double var(--ink-black);
+    padding-bottom: 2rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+    /* Reset previous specific styles */
+    letter-spacing: normal;
+    border-bottom: none;
+    padding-bottom: 0;
+    text-shadow: none;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.shelf {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 2rem 1rem 0.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 4px solid var(--ink-black);
+    position: relative;
+}
+
+.trophyWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    z-index: 5;
+    width: 200px;
+}
+
+.trophyWrapper:hover {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.trophyIcon {
+    /* Estrella dorada */
+    color: #e6b800;
+    fill: #e6b800;
+    margin-bottom: 1rem;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.plaque {
+    background: transparent;
+    border: 2px solid var(--ink-black);
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 100%;
+    box-shadow: none;
+    transform: none;
+}
+
+.trophyName {
+    display: block;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}
+
+.trophyYear {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--ink-black);
+    font-weight: 700;
+}

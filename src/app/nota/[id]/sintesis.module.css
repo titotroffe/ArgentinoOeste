@@ -1,0 +1,145 @@
+.sintesisContainer {
+    margin: 0 0 3rem;
+    border: 4px double var(--ink-black);
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.02);
+    font-family: var(--font-body);
+    page-break-inside: avoid;
+    column-span: all;
+}
+
+.sintesisTitle {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 3rem auto 1rem;
+    text-align: center;
+    display: block;
+    border-bottom: 2px solid var(--ink-black);
+    width: fit-content;
+    padding-bottom: 0.25rem;
+}
+
+.teamsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    position: relative;
+}
+
+.teamsGrid::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background-color: var(--ink-black);
+}
+
+.teamColumn h4 {
+    text-align: center;
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--club-green);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.teamScore {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--ink-black);
+    border: 2px solid var(--ink-black);
+    padding: 0.2rem 0.8rem;
+    line-height: 1;
+    background-color: #fff;
+    transform: rotate(-2deg);
+    vertical-align: middle;
+    /* Alineación vertical */
+    position: relative;
+    top: -2px;
+    /* Ajuste fino */
+}
+
+.resultLabel {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.resultBig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    font-family: var(--font-title);
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.dt {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--ink-light);
+    padding-bottom: 0.5rem;
+}
+
+.sectionTitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+    color: var(--club-green);
+}
+
+.playersList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.playerRow {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+    padding: 2px 0;
+}
+
+.goalMark {
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    font-weight: 900;
+    color: var(--ink-black);
+}
+
+.sintesisFooter {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink-black);
+    border-top: 1px solid var(--ink-black);
+    padding-top: 0.5rem;
+    margin-top: 1.5rem;
+}

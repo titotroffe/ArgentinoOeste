@@ -1,0 +1,110 @@
+/* Cabecera Superior (No Sticky) */
+.mastheadWrapper {
+    background-color: var(--paper-bg);
+    padding: 1rem 0;
+    border-bottom: var(--border-thin);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted var(--ink-light);
+    padding-bottom: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+}
+
+.masthead {
+    text-align: center;
+    padding: 0.5rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logoTitle {
+    font-family: var(--font-title);
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    color: var(--ink-black);
+    line-height: 0.9;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.logoSubtitle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--club-green);
+    font-weight: 700;
+}
+
+/* Navbar Sticky */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: var(--paper-bg);
+    z-index: 1000;
+    border-top: 1px solid var(--ink-black);
+    /* Borde superior para separar del contenido si scrollea */
+    border-bottom: var(--border-double);
+    /* Doble borde solicitado */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    transition: box-shadow 0.2s;
+}
+
+.navContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.navLink {
+    font-family: var(--font-body);
+    color: var(--ink-black);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    position: relative;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.navLink:hover {
+    color: var(--club-green);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+    .logoTitle {
+        font-size: 3rem;
+    }
+
+    .navContainer {
+        gap: 1rem;
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+    }
+}

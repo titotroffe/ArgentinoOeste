@@ -1,0 +1,126 @@
+.container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: var(--border-double);
+    padding-bottom: 2rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid var(--ink-black);
+    padding: 1rem;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+.photoFrame {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #ddd;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    filter: sepia(0.2) grayscale(0.8) contrast(1.1);
+}
+
+.photoFrame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 70%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+}
+
+.name {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--club-green);
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.role {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: var(--ink-light);
+}
+
+.bio {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+    /* Eliminado justify */
+    margin-bottom: 1rem;
+}
+
+.stats {
+    border-top: 1px dotted var(--ink-black);
+    padding-top: 0.75rem;
+    display: flex;
+    justify-content: space-around;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statValue {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.loader {
+    text-align: center;
+    padding: 4rem;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--ink-light);
+}

@@ -1,0 +1,112 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    /* Reducido de 4rem */
+    background-color: transparent;
+}
+
+.header {
+    border-bottom: none;
+    /* Eliminado borde doble */
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+}
+
+.bajada {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink-light);
+    margin-bottom: 2rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--ink-black);
+    border-bottom: 1px solid var(--ink-black);
+    padding: 0.5rem 0;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    /* Reducido de 3rem */
+}
+
+.body {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--ink-black);
+    text-align: justify !important;
+}
+
+.twoColumnText {
+    color: var(--ink-black);
+    text-align: justify !important;
+}
+
+/* .twoColumnText removed as it's no longer needed for wrap layout */
+
+.body p {
+    margin-bottom: 1.5rem;
+}
+
+.figure {
+    width: 100%;
+    /* Back to constraint width */
+    max-width: 552px;
+
+    /* Float RIGHT for wrap */
+    float: right;
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+    /* Reduced from 1rem */
+    margin-top: 0.5rem;
+    /* Slight adjustments based on user feedback */
+    clear: right;
+
+    position: relative;
+    break-inside: avoid;
+}
+
+.figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.body h3 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--club-green);
+    border-bottom: 1px solid var(--ink-black);
+    display: inline-block;
+}
+
+.backButton {
+    margin-top: 4rem;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: var(--border-thin);
+}

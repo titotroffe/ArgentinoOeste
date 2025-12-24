@@ -1,0 +1,226 @@
+{
+    "notas": [
+        {
+            "id": "gloria-eterna-98",
+            "titulo": "GLORIA ETERNA: ARGENTINO OESTE CAMPEÓN",
+            "bajada": "Una mirada retrospectiva a los momentos que forjaron la leyenda del club de la estación. Crónica de una tarde inolvidable.",
+            "fecha": "12 de Mayo de 1998",
+            "autor": "Redacción El Cronista",
+            "cuerpo": "\n            <p>Fue una tarde de sol radiante en San Nicolás. El estadio estaba colmado desde horas antes del pitazo inicial. La expectativa era palpable en el aire; se respiraba fútbol, se respiraba historia. Las banderas verdiblancas ondeaban sin cesar en la tribuna popular, donde la hinchada no paró de alentar ni un solo minuto.</p>\n            <p>Argentino Oeste salió a la cancha con la determinación de quienes saben que la gloria está a un paso. El equipo dirigido por Carlos Bianchi (no el Virrey, pero nuestro Virrey) mostró desde el primer minuto un fútbol aguerrido, vertical y sin concesiones. La presión en la mitad de la cancha fue asfixiante para el rival, que apenas podía cruzar la línea central.</p>\n            <h3>El Desarrollo del Encuentro</h3>\n            <p>El primer tiempo fue trabado, disputado centímetro a centímetro. Los roces eran constantes y el árbitro tuvo que sacar varias tarjetas amarillas para calmar los ánimos. Sin embargo, Argentino siempre pareció estar más cerca, generando las situaciones más claras a través de jugadas de pelota parada y contragolpes letales.</p>\n            <p>En el complemento, el cansancio comenzó a jugar su papel. Las piernas pesaban, pero el corazón empujaba. La figura del arquero visitante se agigantaba tapando dos mano a mano increíbles que ahogaron el grito de gol de las miles de almas presentes.</p>\n            <h3>El Minuto de la Consagración</h3>\n            <p>Corría el minuto 88. El partido estaba empatado y los nervios comenzaban a jugar su propio encuentro. Fue entonces cuando Juan 'La Fiera' Rodríguez recibió un balón sucio en el borde del área. Giró sobre su eje, dejando pagando al central rival con un movimiento magistral, y sacó un derechazo fulminante que se coló en el ángulo superior izquierdo, inatajable.</p>\n            <p>El grito de gol se escuchó hasta las orillas del Paraná. Fue el desahogo de años de lucha, de sacrificio, de barro y sudor. La invasión de campo tras el pitazo final quedará grabada en la retina de todos los nicoleños. Argentino Oeste era campeón, y la estación era una verdadera fiesta popular que se extendió hasta altas horas de la madrugada.</p>\n            <p>Este título no es solo una copa en la vitrina; es la reivindicación de un barrio, de una identidad y de una forma de vivir el fútbol. ¡Salud, Campeones!</p>\n        ",
+            "imagen": "",
+            "epigrafe": "El abrazo interminable tras el gol del campeonato.",
+            "categoria": "Crónica",
+            "detallesPartido": {
+                "local": {
+                    "nombre": "Argentino Oeste",
+                    "dt": "Carlos Bianchi",
+                    "titulares": [
+                        {
+                            "nombre": "M. Díaz"
+                        },
+                        {
+                            "nombre": "C. López"
+                        },
+                        {
+                            "nombre": "R. Gómez"
+                        },
+                        {
+                            "nombre": "P. Almirón"
+                        },
+                        {
+                            "nombre": "J. González"
+                        },
+                        {
+                            "nombre": "D. Simeone"
+                        },
+                        {
+                            "nombre": "J. Riquelme"
+                        },
+                        {
+                            "nombre": "A. Ortega"
+                        },
+                        {
+                            "nombre": "G. Batistuta"
+                        },
+                        {
+                            "nombre": "J. Rodríguez",
+                            "goles": 1
+                        },
+                        {
+                            "nombre": "C. Caniggia"
+                        }
+                    ],
+                    "suplentes": [
+                        {
+                            "nombre": "S. Goycochea"
+                        },
+                        {
+                            "nombre": "H. Crespo",
+                            "ingreso": true
+                        },
+                        {
+                            "nombre": "J. Sorín",
+                            "ingreso": true
+                        }
+                    ]
+                },
+                "visitante": {
+                    "nombre": "Rival FC",
+                    "dt": "José Pekerman",
+                    "titulares": [
+                        {
+                            "nombre": "N. Pumpido"
+                        },
+                        {
+                            "nombre": "J. Brown"
+                        },
+                        {
+                            "nombre": "O. Ruggeri"
+                        },
+                        {
+                            "nombre": "N. Clausen"
+                        },
+                        {
+                            "nombre": "R. Giusti"
+                        },
+                        {
+                            "nombre": "S. Batista"
+                        },
+                        {
+                            "nombre": "J. Valdano"
+                        },
+                        {
+                            "nombre": "H. Enrique"
+                        },
+                        {
+                            "nombre": "J. Burruchaga"
+                        },
+                        {
+                            "nombre": "D. Maradona"
+                        },
+                        {
+                            "nombre": "R. Bochini"
+                        }
+                    ],
+                    "suplentes": [
+                        {
+                            "nombre": "L. Islas"
+                        },
+                        {
+                            "nombre": "P. Pasculli",
+                            "ingreso": true
+                        }
+                    ]
+                },
+                "arbitro": "Horacio Elizondo",
+                "cancha": "El Fortín (San Nicolás)",
+                "resultado": "1 - 0"
+            }
+        },
+        {
+            "id": "hemeroteca-2023",
+            "titulo": "BALANCE DE TEMPORADA 2023",
+            "bajada": "Un año de transición que dejó sensaciones positivas y la consolidación de juveniles promisorios.",
+            "fecha": "15 de Diciembre de 2023",
+            "cuerpo": "<p>La temporada 2023 finalizó con Argentino Oeste ocupando el tercer lugar en la tabla general. Si bien el objetivo era el campeonato, el proceso de recambio generacional ha sido exitoso...</p>",
+            "categoria": "Hemeroteca"
+        },
+        {
+            "id": "nota-3",
+            "titulo": "EL CLÁSICO FUE VERDE",
+            "bajada": "En un partido vibrante, Argentino se quedó con el derby de la ciudad gracias a un gol agónico.",
+            "fecha": "10 de Abril de 2022",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Crónica",
+            "imagen": "/images/clasico.jpg"
+        },
+        {
+            "id": "nota-4",
+            "titulo": "NUEVAS OBRAS EN EL ESTADIO",
+            "bajada": "Se inauguró la nueva tribuna lateral con capacidad para 500 personas más.",
+            "fecha": "05 de Marzo de 2022",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Institucional"
+        },
+        {
+            "id": "nota-5",
+            "titulo": "ENTREVISTA A LA PROMESA DE INFERIORES",
+            "bajada": "Lucas 'El Rayo' Martínez habla sobre su debut en primera y sus sueños.",
+            "fecha": "20 de Febrero de 2022",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Entrevista"
+        },
+        {
+            "id": "nota-6",
+            "titulo": "CENA ANIVERSARIO DEL CLUB",
+            "bajada": "Una noche emotiva donde se reconoció a los socios vitalicios.",
+            "fecha": "15 de Enero de 2022",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Sociales"
+        },
+        {
+            "id": "nota-7",
+            "titulo": "INICIO DE PRETEMPORADA 2022",
+            "bajada": "El plantel retomó los entrenamientos bajo las órdenes del nuevo cuerpo técnico.",
+            "fecha": "02 de Enero de 2022",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Deportes"
+        },
+        {
+            "id": "nota-8",
+            "titulo": "CAMPEONES DEL CLAUSURA 2019",
+            "bajada": "Recordamos la campaña del último título liguista.",
+            "fecha": "12 de Diciembre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Hemeroteca"
+        },
+        {
+            "id": "nota-9",
+            "titulo": "ASAMBLEA GENERAL ORDINARIA",
+            "bajada": "Se aprobaron balance y memoria del ejercicio anterior.",
+            "fecha": "30 de Noviembre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Institucional"
+        },
+        {
+            "id": "nota-10",
+            "titulo": "TRIUNFAZO EN BARADERO",
+            "bajada": "Argentino se trajo tres puntos de oro en su visita al Sportivo.",
+            "fecha": "15 de Noviembre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Crónica"
+        },
+        {
+            "id": "nota-11",
+            "titulo": "LA ESCUELITA DE FÚTBOL NO PARA",
+            "bajada": "Más de 200 chicos participan diariamente de las actividades formativas.",
+            "fecha": "01 de Noviembre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Institucional"
+        },
+        {
+            "id": "nota-12",
+            "titulo": "HOMENAJE A 'TITO' RODRÍGUEZ",
+            "bajada": "El histórico utilero recibió una plaqueta por sus 40 años de servicio.",
+            "fecha": "20 de Octubre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Sociales"
+        },
+        {
+            "id": "nota-13",
+            "titulo": "EMPATE CON SABOR A POCO",
+            "bajada": "Argentino mereció más pero no pudo quebrar el cero ante Regatas.",
+            "fecha": "10 de Octubre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Crónica"
+        },
+        {
+            "id": "nota-14",
+            "titulo": "VISITA DE LUJO: EL BOCHA EN LA ESTACIÓN",
+            "bajada": "Ricardo Bochini pasó por el club y brindó una charla a los juveniles.",
+            "fecha": "01 de Octubre de 2021",
+            "cuerpo": "<p>Contenido simulado...</p>",
+            "categoria": "Sociales"
+        }
+    ]
+}

@@ -1,27 +1,31 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Paleta Periodística Retro */
+  --paper-bg: #F4F1EA;
+  --paper-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  /* Texto: Verde Oscuro Profundo (Casi negro pero verde) */
+  --ink-black: #0c4728;
+  --ink-light: #355c46;
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  /* Colores del Club */
+  --club-green: #00331a;
+  --club-green-light: #1a5c38;
+  --club-white: #ffffff;
+  --club-lightblue: #6CABDD;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Acentos */
+  --sepia-border: #8c8c8c;
+  --highlight: #fff9c4;
+
+  /* Fuentes */
+  --font-title: var(--font-title), 'Times New Roman', serif;
+  --font-body: var(--font-body), 'Courier New', monospace;
+
+  --border-double: 4px double var(--ink-black);
+  --border-thin: 1px solid var(--ink-black);
+
+  /* Layout Standard */
+  --max-content-width: 1200px;
 }
 
 * {
@@ -30,13 +34,89 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100%;
+
+  background-color: var(--paper-bg);
+  color: var(--ink-black);
+  font-family: var(--font-body);
+  position: relative;
+  text-align: left !important;
+  /* Forzar no justificado */
+  min-height: 100vh;
+}
+
+/* Clase para el DIV de superposición vintage (Layout) */
+.vintage-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+
+  /* 1. Tinte Amarillento/Sepia Global (Papel Viejo) */
+  background-color: rgba(220, 190, 140, 0.3);
+  /* Tinte ocre/sepia */
+
+  /* 2. Vignette Radial Suave (Oscurecimiento gradual desde las esquinas) */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, transparent 60%, rgba(254, 242, 223, 0.718) 100%);
+  background-repeat:
+    repeat,
+    no-repeat;
+
+  background-size:
+    400px 400px,
+    cover;
+
+  background-attachment:
+    fixed,
+    fixed;
+  /* 3. Bordes Físicos Quemados (Extra punch en los bordes) */
+  box-shadow: inset 0 0 60px 10px rgba(40, 20, 5, 0.5);
+
+  /* 4. Mezcla */
+  mix-blend-mode: multiply;
+
+  /* Filtro final para contrastar el efecto */
+  filter: sepia(0.4) contrast(1.1);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--paper-texture);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+ul,
+ol,
+li {
+  list-style: none;
 }
