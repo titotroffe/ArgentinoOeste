@@ -1,5 +1,5 @@
 import styles from './palmares.module.css';
-import { Star } from 'lucide-react';
+import VintageTrophy from '../../components/Palmares/VintageTrophy';
 
 export default function PalmaresPage() {
     const trofeos = [
@@ -13,12 +13,6 @@ export default function PalmaresPage() {
         { nombre: "Torneo Clausura", anio: "2019" },
     ];
 
-    // Helper para dividir en estantes (chunks de 3)
-    const shelves = [];
-    for (let i = 0; i < trofeos.length; i += 3) {
-        shelves.push(trofeos.slice(i, i + 3));
-    }
-
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -26,24 +20,20 @@ export default function PalmaresPage() {
                 <p className={styles.subtitle}>Orgullo y gloria de nuestra institución</p>
             </header>
 
-            <div className={styles.cabinetContainer}>
-
-                {shelves.map((shelf, shelfIndex) => (
-                    <div key={shelfIndex} className={styles.shelf}>
-                        {shelf.map((trofeo, index) => (
-                            <div key={index} className={styles.trophyWrapper}>
-                                <Star
-                                    size={80}
-                                    strokeWidth={1}
-                                    className={styles.trophyIcon}
-                                    aria-label={`Trofeo ${trofeo.nombre} ${trofeo.anio}`}
-                                />
-                                <div className={styles.plaque}>
-                                    <span className={styles.trophyName}>{trofeo.nombre}</span>
-                                    <span className={styles.trophyYear}>{trofeo.anio}</span>
-                                </div>
-                            </div>
-                        ))}
+            <div className={styles.cabinetGrid}>
+                {trofeos.map((trofeo, index) => (
+                    <div key={index} className={styles.trophyCard}>
+                        <div className={styles.iconWrapper}>
+                            <VintageTrophy
+                                size={64}
+                                className={styles.trophyIcon}
+                            />
+                        </div>
+                        <div className={styles.cardContent}>
+                            <span className={styles.trophyName}>{trofeo.nombre}</span>
+                            <div className={styles.separator}></div>
+                            <span className={styles.trophyYear}>{trofeo.anio}</span>
+                        </div>
                     </div>
                 ))}
             </div>

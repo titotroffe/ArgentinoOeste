@@ -1,22 +1,10 @@
 .container {
     max-width: 1200px;
-    /* Estandarizado */
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 3rem 1.5rem;
     min-height: 80vh;
 }
 
-.cabinetContainer {
-    /* Fondo limpio transparente */
-    background-color: transparent;
-    border: 4px double var(--ink-black);
-    border-radius: 4px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Header Styles Unificados */
 .header {
     text-align: center;
     margin-bottom: 4rem;
@@ -29,11 +17,8 @@
     margin-bottom: 1rem;
     color: var(--ink-black);
     text-transform: uppercase;
-    /* Reset previous specific styles */
-    letter-spacing: normal;
-    border-bottom: none;
-    padding-bottom: 0;
-    text-shadow: none;
+    font-family: var(--font-title);
+    letter-spacing: -1px;
 }
 
 .subtitle {
@@ -45,64 +30,111 @@
     margin: 0 auto;
 }
 
-.shelf {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    padding: 2rem 1rem 0.5rem;
-    margin-bottom: 3rem;
-    border-bottom: 4px solid var(--ink-black);
-    position: relative;
+/* Grid Layout */
+.cabinetGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
 }
 
-.trophyWrapper {
+/* Trophy Card Design */
+.trophyCard {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    z-index: 5;
-    width: 200px;
+    gap: 1.5rem;
+    background-color: #fffcf5;
+    /* Warm paper white */
+    border: 1px solid #e0d8c0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.trophyWrapper:hover {
-    transform: scale(1.05) translateY(-5px);
+.trophyCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #d4c5a0;
+}
+
+/* Gold Accent Line on left */
+.trophyCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #cfae44, #e6c860, #cfae44);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.iconWrapper {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fcfbf9;
+    border-radius: 50%;
+    border: 1px solid #efeadd;
 }
 
 .trophyIcon {
-    /* Estrella dorada */
-    color: #e6b800;
-    fill: #e6b800;
-    margin-bottom: 1rem;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+    color: #cfae44;
+    /* Gold */
+    fill: #fdfcf5;
+    /* Light fill */
 }
 
-.plaque {
-    background: transparent;
-    border: 2px solid var(--ink-black);
-    border-radius: 4px;
-    padding: 0.5rem;
-    width: 100%;
-    box-shadow: none;
-    transform: none;
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .trophyName {
-    display: block;
     font-family: var(--font-title);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--ink-black);
     text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 0.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.separator {
+    width: 40px;
+    height: 2px;
+    background-color: #e0d8c0;
+    margin: 0.5rem 0;
 }
 
 .trophyYear {
-    display: block;
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--ink-black);
+    font-size: 1.25rem;
+    color: var(--club-green);
+    /* Contrast color */
     font-weight: 700;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .trophyCard {
+        padding: 1.25rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .cabinetGrid {
+        grid-template-columns: 1fr;
+        /* Stack on mobile */
+    }
 }
