@@ -95,7 +95,7 @@
     justify-content: center;
     align-items: center;
     perspective: 1500px;
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
 }
 
 .bookWrapper {
@@ -268,11 +268,12 @@
     aspect-ratio: 1;
 }
 
+/* Mobile Override: Enlarge photo as requested */
 @media (max-width: 480px) {
     .vintagePhotoFrame {
-        width: 100px;
-        height: 100px;
-        margin-top: 1.5rem;
+        width: 175px;
+        height: 175px;
+        margin-top: 3rem;
     }
 }
 
@@ -311,20 +312,7 @@
     /* Prevent overflow */
 }
 
-@media (max-width: 480px) {
-    .elegantName {
-        font-size: 1.3rem;
-        min-width: 100px;
-    }
-
-    .vintageLabel {
-        font-size: 0.7rem;
-    }
-
-    .vintageValue {
-        font-size: 1rem;
-    }
-}
+/* Removed text size mobile overrides to maintain desktop proportions */
 
 .stampLeft,
 .stampRight {
@@ -346,26 +334,12 @@
 }
 
 .stampRight {
-    right: -130px;
+    right: -120px;
     /* Wider separation */
     transform: rotate(2deg);
 }
 
-@media (max-width: 480px) {
-
-    .stampLeft,
-    .stampRight {
-        width: 150px;
-    }
-
-    .stampLeft {
-        left: -80px;
-    }
-
-    .stampRight {
-        right: -80px;
-    }
-}
+/* Removed stamp mobile overrides to maintain desktop proportions */
 
 
 /* The Cover Page Container (Rotates) */
@@ -401,10 +375,8 @@
     flex-direction: column;
 }
 
-/* LEATHER TEXTURE Front Cover */
-/* LEATHER TEXTURE Front Cover */
-/* LEATHER TEXTURE Front Cover */
-/* LEATHER TEXTURE Front Cover */
+
+
 /* LEATHER TEXTURE Front Cover */
 .front {
     background-color: #ac2f2f;
@@ -614,8 +586,9 @@
     }
 }
 
+
 /* Specific adjustments for small mobiles (< 430px) */
-@media (max-width: 430px) {
+@media (max-width: 431px) {
     .container {
         padding: 1rem 0.5rem;
         /* Reduced padding */
@@ -641,6 +614,19 @@
         */
         transform: translateX(25%) scale(0.5);
     }
+
+    .stampLeft,
+    .stampRight {
+        position: absolute;
+        bottom: 17%;
+        width: 200px;
+        height: auto;
+        opacity: 0.35;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+        z-index: 5;
+    }
+
 }
 
 /* Specific adjustments for ultra-small mobiles (< 376px) */

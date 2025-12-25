@@ -48,41 +48,43 @@ export default function AsociatePage() {
             <div className={styles.contentGrid}>
 
                 {/* FORM SIDE */}
-                <div className={styles.formSection}>
-                    <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '1.5rem', fontSize: '1.5rem' }}>Tus Datos</h2>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '1.5rem', fontSize: '1.5rem', textAlign: 'center' }}>Tus Datos</h2>
+                    <div className={styles.formSection}>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="name">Nombre Completo</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            className={styles.input}
-                            placeholder="Ej: Juan Pérez"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label className={styles.label}>Foto de Perfil</label>
-                        <div className={styles.fileInputWrapper}>
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="name">Nombre Completo</label>
                             <input
-                                type="file"
-                                accept="image/*"
-                                className={styles.fileInput}
-                                onChange={handlePhotoUpload}
+                                type="text"
+                                id="name"
+                                name="name"
+                                className={styles.input}
+                                placeholder="Ej: Juan Pérez"
+                                value={formData.name}
+                                onChange={handleInputChange}
                             />
-                            <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
-                                Subí una foto tipo carnet (cuadrada o vertical preferentemente).
-                            </p>
                         </div>
-                    </div>
 
-                    <div style={{ marginTop: '2rem' }}>
-                        <Button size="lg" variant="primary" onClick={handleDownload}>
-                            DESCARGAR CARNET
-                        </Button>
+                        <div className={styles.formGroup}>
+                            <label className={styles.label}>Foto de Perfil</label>
+                            <div className={styles.fileInputWrapper}>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className={styles.fileInput}
+                                    onChange={handlePhotoUpload}
+                                />
+                                <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
+                                    Subí una foto tipo carnet (cuadrada o vertical preferentemente).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '2rem' }}>
+                            <Button size="lg" variant="primary" onClick={handleDownload}>
+                                DESCARGAR CARNET
+                            </Button>
+                        </div>
                     </div>
                 </div>
 
