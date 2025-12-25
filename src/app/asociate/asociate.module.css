@@ -588,7 +588,7 @@
 
 
 /* Specific adjustments for small mobiles (< 430px) */
-@media (max-width: 431px) {
+@media (max-width: 477px) {
     .container {
         padding: 1rem 0.5rem;
         /* Reduced padding */
@@ -630,7 +630,7 @@
 }
 
 /* Specific adjustments for ultra-small mobiles (< 376px) */
-@media (max-width: 376px) {
+@media (max-width: 446px) {
     .container {
         padding: 1rem 0.5rem;
         /* Very small padding */
@@ -666,4 +666,5 @@
         */
         transform: translateX(23%) scale(0.46);
     }
+
 }
