@@ -123,7 +123,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                 </linearGradient>
                             </defs>
 
-                            {/* Curved Top Text */}
+                            {/* Curved Top Text - Reverted to original curve as requested */}
                             <path id="curve" d="M 35,145 Q 130,10 225,145" fill="transparent" />
                             <text className={styles.embossedText} style={{ fill: 'url(#goldGradient)', fontFamily: '"Arial Narrow", "Arial", sans-serif', fontWeight: 'bold', fontSize: '28px', textTransform: 'uppercase', letterSpacing: '2px' }}>
                                 <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">

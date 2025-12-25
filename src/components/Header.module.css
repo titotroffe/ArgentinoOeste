@@ -103,8 +103,69 @@
     }
 
     .navContainer {
-        gap: 1rem;
-        font-size: 0.8rem;
-        flex-wrap: wrap;
+        /* Hide default nav container on mobile */
+        display: none;
     }
+
+    .hideMobile {
+        display: none;
+    }
+
+    .desktopNav {
+        display: none;
+    }
+}
+
+/* Mobile Menu Styles */
+.mobileNavHeader {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--paper-bg);
+    border-bottom: 2px solid var(--ink-black);
+    padding: 0.5rem 1.5rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .mobileNavHeader {
+        display: flex;
+    }
+}
+
+.mobileMenuBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink-black);
+}
+
+.mobileMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--paper-bg);
+    z-index: 2000;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.mobileNavLink {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: var(--ink-black);
+    font-weight: 700;
 }

@@ -100,6 +100,21 @@
         width: 100%;
         height: auto;
         /* Let aspect ratio define height */
+        transform-origin: center center;
+        transition: transform 0.5s ease;
+        /* Smooth movement */
+        /* Removed margin-left: -5% to fix centering issues */
+    }
+
+    /* MOBILE: When hovered (clicked), slide right to keep open book centered */
+    .bookWrapper:hover,
+    .bookWrapper:active {
+        /*
+          Rationale:
+          - We translate 25% right (less than before) so it doesn't go too far.
+          - We scale down to 0.55 to ensure the full open width fits comfortably.
+        */
+        transform: translateX(25%) scale(0.55);
     }
 }
 
