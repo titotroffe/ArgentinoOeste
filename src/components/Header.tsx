@@ -19,8 +19,8 @@ export default function Header() {
                 <div className={styles.container}>
                     <div className={styles.topBar}>
                         <span className={styles.hideMobile}>San Nicolás de los Arroyos</span>
-                        <span>{fechaHoy}</span>
-                        <span>Ed. Digital n° 1</span>
+                        <span className={styles.hideMobile}>{fechaHoy}</span>
+                        <span className={styles.hideMobile}>Ed. Digital n° 1</span>
                     </div>
 
                     <div className={styles.masthead}>
@@ -44,11 +44,21 @@ export default function Header() {
                 </div>
             </nav>
 
-            {/* Mobile Navbar Button */}
+            {/* Mobile Navbar Header - Sticky */}
             <div className={styles.mobileNavHeader}>
                 <button onClick={toggleMenu} className={styles.mobileMenuBtn} aria-label="Menu">
-                    {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    <Menu size={28} />
                 </button>
+
+                <span className={styles.mobileHeaderTitle}>La Gaceta de la Estación</span>
+
+                {isMenuOpen ? (
+                    <button onClick={toggleMenu} className={styles.mobileMenuBtn} aria-label="Close">
+                        <X size={28} />
+                    </button>
+                ) : (
+                    <div style={{ width: '28px' }}></div> /* Spacer to keep title centered */
+                )}
             </div>
 
             {/* Mobile Menu Overlay */}

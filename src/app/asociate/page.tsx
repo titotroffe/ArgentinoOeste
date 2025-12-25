@@ -38,7 +38,12 @@ export default function AsociatePage() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Hacete Socio</h1>
+            <header className={styles.header}>
+                <h1 className={styles.title}>Hacete Socio</h1>
+                <p className={styles.subtitle}>
+                    Sumate a la pasión. Sé parte de la historia.
+                </p>
+            </header>
 
             <div className={styles.contentGrid}>
 

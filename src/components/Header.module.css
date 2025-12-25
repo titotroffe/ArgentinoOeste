@@ -119,19 +119,43 @@
 /* Mobile Menu Styles */
 .mobileNavHeader {
     display: none;
+    display: none;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 2001;
+    /* Ensure above overlay (2000) */
     background: var(--paper-bg);
     border-bottom: 2px solid var(--ink-black);
-    padding: 0.5rem 1.5rem;
-    justify-content: flex-end;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    /* Grid layout for perfect centering */
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+}
+
+/* Ensure grid only applies on mobile */
+@media (min-width: 769px) {
+    .mobileNavHeader {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
-    .mobileNavHeader {
-        display: flex;
-    }
+    /* .mobileNavHeader is already styled above, just ensure visibility if overridden */
+}
+
+.mobileHeaderTitle {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    color: var(--club-green);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .mobileMenuBtn {
@@ -139,6 +163,22 @@
     border: none;
     cursor: pointer;
     color: var(--ink-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobileMenuOverlay {
@@ -149,10 +189,12 @@
     height: 100vh;
     background: var(--paper-bg);
     z-index: 2000;
-    padding-top: 5rem;
+    padding-top: 6rem;
+    /* More space for header */
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .mobileNav {

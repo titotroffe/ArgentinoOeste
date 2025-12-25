@@ -4,16 +4,32 @@
     padding: 2rem 1.5rem;
     min-height: 80vh;
     overflow-x: hidden;
+    overflow-x: hidden;
     /* Prevent horizontal scroll from 3D effects */
 }
 
-.title {
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: var(--club-green);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
+/* Standard Section Header */
+.header {
     text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: var(--border-double);
+    padding-bottom: 2rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--ink-light);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .contentGrid {
@@ -24,7 +40,7 @@
 }
 
 .contentGrid>div:last-child {
-    padding-top: 2rem;
+    /* padding-top: 2rem; REMOVED for alignment */
 }
 
 /* Form Styles - RESTORED */
@@ -403,6 +419,7 @@
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay, multiply, multiply;
+    /* Added overlay for shine */
     border-radius: 0 25px 25px 0;
     /* Multiply image with color */
     border-left: 6px solid rgba(0, 0, 0, 0.2);
@@ -414,6 +431,8 @@
     /* Embossed Stitching effect */
     box-shadow:
         inset 0 0 10px rgba(0, 0, 0, 0.8),
+        inset 2px 2px 10px rgba(255, 255, 255, 0.2),
+        /* Edge highlight */
         /* Inner shadow */
         inset 0 0 0 4px #6e2c2c,
         /* Fake stitching line */
@@ -592,5 +611,73 @@
     .contentGrid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+}
+
+/* Specific adjustments for small mobiles (< 430px) */
+@media (max-width: 430px) {
+    .container {
+        padding: 1rem 0.5rem;
+        /* Reduced padding */
+    }
+
+    .title {
+        font-size: 2.2rem;
+        /* Smaller title */
+        margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .bookWrapper:hover,
+    .bookWrapper:active {
+        /* 
+           Slightly tighter scale for very narrow screens 
+           430px * 0.5 ~ 215px (half open width) fits well.
+           0.55 might be tight on 390px, so 0.5 is safer.
+        */
+        transform: translateX(25%) scale(0.5);
+    }
+}
+
+/* Specific adjustments for ultra-small mobiles (< 376px) */
+@media (max-width: 376px) {
+    .container {
+        padding: 1rem 0.5rem;
+        /* Very small padding */
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .formSection {
+        padding: 1rem 0.5rem;
+        /* NO negative margins to ensure centering */
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Force centering of the book container */
+    .cardPreview {
+        padding: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .bookWrapper {
+        margin: 0 auto;
+    }
+
+    .bookWrapper:hover,
+    .bookWrapper:active {
+        /* 
+           Scale up to 0.46 (better fit than 0.42). 
+           Center transform: scale 0.46 / 2 = 0.23 -> 23% 
+        */
+        transform: translateX(23%) scale(0.46);
     }
 }
