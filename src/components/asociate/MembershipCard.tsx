@@ -114,7 +114,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                     <div className={styles.front}>
 
                         {/* Unified SVG for all Text to ensure identical styling */}
-                        <svg width="260" height="300" viewBox="0 0 260 300" style={{ overflow: 'visible' }}>
+                        <svg width="100%" height="100%" viewBox="0 0 260 300" style={{ overflow: 'visible', maxWidth: '100%', maxHeight: '100%' }}>
                             <defs>
                                 <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                     <stop offset="0%" stopColor="#fff8db" /> {/* Very light gold highlight */}

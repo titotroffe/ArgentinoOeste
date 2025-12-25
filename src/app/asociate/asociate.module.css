@@ -3,6 +3,8 @@
     margin: 0 auto;
     padding: 2rem 1.5rem;
     min-height: 80vh;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll from 3D effects */
 }
 
 .title {
@@ -84,7 +86,21 @@
     position: relative;
     width: 300px;
     height: 400px;
+    /* Base height for desktop */
     cursor: pointer;
+    transition: transform 0.3s;
+    max-width: 90vw;
+    /* Responsive constraint */
+    aspect-ratio: 300 / 400;
+    /* Maintain aspect ratio */
+}
+
+@media (max-width: 480px) {
+    .bookWrapper {
+        width: 100%;
+        height: auto;
+        /* Let aspect ratio define height */
+    }
 }
 
 /* The Right Page (Leather Background Container) */
@@ -142,6 +158,9 @@
     margin-bottom: 0.2rem;
     letter-spacing: -0.5px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .vintageSubHeader {
@@ -151,6 +170,7 @@
     font-size: 0.8rem;
     text-align: center;
     margin-bottom: 0.5rem;
+    padding: 0 5px;
 }
 
 .watermarkContainer {
@@ -158,8 +178,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 160px;
-    height: 160px;
+    width: 50%;
+    /* Percent based */
+    height: auto;
     opacity: 0.12;
     pointer-events: none;
     z-index: 0;
@@ -216,6 +237,14 @@
     aspect-ratio: 1;
 }
 
+@media (max-width: 480px) {
+    .vintagePhotoFrame {
+        width: 100px;
+        height: 100px;
+        margin-top: 1.5rem;
+    }
+}
+
 .vintagePhotoFrame::after {
     content: '';
     position: absolute;
@@ -247,6 +276,23 @@
     /* Thicker dots */
     padding-bottom: 0px;
     min-width: 150px;
+    max-width: 100%;
+    /* Prevent overflow */
+}
+
+@media (max-width: 480px) {
+    .elegantName {
+        font-size: 1.3rem;
+        min-width: 100px;
+    }
+
+    .vintageLabel {
+        font-size: 0.7rem;
+    }
+
+    .vintageValue {
+        font-size: 1rem;
+    }
 }
 
 .stampLeft,
@@ -272,6 +318,22 @@
     right: -130px;
     /* Wider separation */
     transform: rotate(2deg);
+}
+
+@media (max-width: 480px) {
+
+    .stampLeft,
+    .stampRight {
+        width: 150px;
+    }
+
+    .stampLeft {
+        left: -80px;
+    }
+
+    .stampRight {
+        right: -80px;
+    }
 }
 
 
