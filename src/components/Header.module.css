@@ -98,6 +98,14 @@
 }
 
 @media (max-width: 768px) {
+    .topBar {
+        display: none;
+    }
+
+    .masthead {
+        display: none;
+    }
+
     .logoTitle {
         font-size: 3rem;
     }
@@ -119,9 +127,10 @@
 /* Mobile Menu Styles */
 .mobileNavHeader {
     display: none;
-    display: none;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 2001;
     /* Ensure above overlay (2000) */
     background: var(--paper-bg);
@@ -132,13 +141,34 @@
     /* Grid layout for perfect centering */
     display: grid;
     grid-template-columns: 40px 1fr 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Ensure grid only applies on mobile */
 @media (min-width: 769px) {
-    .mobileNavHeader {
+
+    .mobileNavHeader,
+    .mobileHeaderSpacer {
         display: none;
     }
+}
+
+.mobileHeaderSpacer {
+    height: 50px;
+    /* Spacer for fixed header */
+    width: 100%;
+    background: transparent;
+}
+
+/* Force header to top when menu is open */
+.headerOpen {
+    position: fixed !important;
+    /* Override sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: add shadow for depth */
 }
 
 @media (max-width: 768px) {

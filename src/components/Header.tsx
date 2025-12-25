@@ -45,7 +45,7 @@ export default function Header() {
             </nav>
 
             {/* Mobile Navbar Header - Sticky */}
-            <div className={styles.mobileNavHeader}>
+            <div className={`${styles.mobileNavHeader} ${isMenuOpen ? styles.headerOpen : ''}`}>
                 <button onClick={toggleMenu} className={styles.mobileMenuBtn} aria-label="Menu">
                     <Menu size={28} />
                 </button>
@@ -60,6 +60,9 @@ export default function Header() {
                     <div style={{ width: '28px' }}></div> /* Spacer to keep title centered */
                 )}
             </div>
+
+            {/* Spacer for fixed header */}
+            <div className={styles.mobileHeaderSpacer}></div>
 
             {/* Mobile Menu Overlay */}
             {isMenuOpen && (
