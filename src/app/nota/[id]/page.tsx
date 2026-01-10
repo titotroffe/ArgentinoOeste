@@ -33,27 +33,29 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
             <div className={styles.body}>
                 <div className={styles.twoColumnText}>
                     {/* Imagen Flotada a la Derecha (Wrap) */}
-                    <div className={styles.figure}>
-                        <Image
-                            src={nota.imagen ? urlFor(nota.imagen).width(800).height(450).url() : '/placeholder.svg'}
-                            alt={nota.titulo}
-                            width={800}
-                            height={450}
-                            style={{ width: '100%', height: 'auto', borderRadius: '0.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
-                            priority
-                        />
-                        {/* Mostrar solo el epígrafe si existe */}
-                        {nota.imagen?.epigrafe && (
-                            <p className={styles.figcaption}>{nota.imagen.epigrafe}</p>
-                        )}
-                    </div>
+                    {nota.imagen && (
+                        <div className={styles.figure}>
+                            <Image
+                                src={urlFor(nota.imagen).width(800).height(450).url()}
+                                alt={nota.titulo}
+                                width={800}
+                                height={450}
+                                style={{ width: '100%', height: 'auto', borderRadius: '0.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+                                priority
+                            />
+                            {/* Mostrar solo el epígrafe si existe */}
+                            {nota.imagen.epigrafe && (
+                                <p className={styles.figcaption}>{nota.imagen.epigrafe}</p>
+                            )}
+                        </div>
+                    )}
 
                     {/* Todo el Texto fluye alrededor */}
                     <PortableText
                         value={nota.cuerpo}
                         components={{
                             block: {
-                                normal: ({ children }: any) => <p className="mb-4 leading-relaxed text-justify">{children}</p>,
+                                normal: ({ children }: any) => <p className="text-justify">{children}</p>,
                                 h3: ({ children }: any) => <h3 className="text-xl font-bold mt-6 mb-2 uppercase">{children}</h3>,
                             }
                         }}
@@ -78,7 +80,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
 
                                 <div className={sintesisStyles.sectionTitle}>Titulares</div>
                                 <ul className={sintesisStyles.playersList}>
-                                    {nota.detallesPartido.local.titulares.map((p, i) => (
+                                    {nota.detallesPartido.local.titulares?.map((p, i) => (
                                         <li key={i} className={sintesisStyles.playerRow}>
                                             <span>{p.nombre}</span>
                                             <div>
@@ -90,7 +92,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
 
                                 <div className={sintesisStyles.sectionTitle}>Suplentes</div>
                                 <ul className={sintesisStyles.playersList}>
-                                    {nota.detallesPartido.local.suplentes.map((p, i) => (
+                                    {nota.detallesPartido.local.suplentes?.map((p, i) => (
                                         <li key={i} className={sintesisStyles.playerRow}>
                                             <span>{p.nombre}</span>
                                             <div>
@@ -108,7 +110,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
 
                                 <div className={sintesisStyles.sectionTitle}>Titulares</div>
                                 <ul className={sintesisStyles.playersList}>
-                                    {nota.detallesPartido.visitante.titulares.map((p, i) => (
+                                    {nota.detallesPartido.visitante.titulares?.map((p, i) => (
                                         <li key={i} className={sintesisStyles.playerRow}>
                                             <span>{p.nombre}</span>
                                             <div>
@@ -120,7 +122,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
 
                                 <div className={sintesisStyles.sectionTitle}>Suplentes</div>
                                 <ul className={sintesisStyles.playersList}>
-                                    {nota.detallesPartido.visitante.suplentes.map((p, i) => (
+                                    {nota.detallesPartido.visitante.suplentes?.map((p, i) => (
                                         <li key={i} className={sintesisStyles.playerRow}>
                                             <span>{p.nombre}</span>
                                             <div>

@@ -24,6 +24,8 @@
   margin-bottom: 1rem;
   font-family: var(--font-title);
   color: var(--ink-black);
+  text-align: center;
+  /* Centered as requested */
 }
 
 .subtitle {
@@ -32,6 +34,10 @@
   font-family: var(--font-title);
   color: var(--ink-light);
   margin-bottom: 1.5rem;
+  text-align: center;
+  /* Match title alignment */
+  line-height: 1.3;
+  /* Tighter line height to fix "too much space" */
 }
 
 /* Center the column content */
@@ -70,6 +76,8 @@
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  /* Center buttons */
 }
 
 .section {

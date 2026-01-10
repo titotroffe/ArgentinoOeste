@@ -1,42 +1,15 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import styles from './page.module.css';
+import { getLeyendas } from '@/lib/db';
+import { urlFor } from '@/sanity/lib/image';
 
-// Datos Mock de Leyendas (después mover a mock-data.ts si es necesario)
-const leyendas = [
-    {
-        id: 1,
-        nombre: "Juan 'La Fiera' Rodríguez",
-        rol: "Delantero Centro",
-        periodo: "1978 - 1985",
-        partidos: 184,
-        goles: 97,
-        bio: "El máximo goleador histórico del club. Conocido por su potente remate de derecha y su capacidad para definir en los momentos clave. Lideró al equipo al campeonato del 82.",
-        imagen: "" // Placeholder
-    },
-    {
-        id: 2,
-        nombre: "Roberto 'El Muro' Sánchez",
-        rol: "Defensor Central",
-        periodo: "1990 - 2001",
-        partidos: 312,
-        goles: 12,
-        bio: "Capitán indiscutido durante la década de los 90. Un líder nato dentro y fuera de la cancha. Su entrega y coraje inspiraron a toda una generación de defensores.",
-        imagen: ""
-    },
-    {
-        id: 3,
-        nombre: "Carlos Bianchi (No el Virrey)",
-        rol: "Director Técnico",
-        periodo: "1980 - 1984",
-        partidos: 150,
-        goles: 0,
-        bio: "El arquitecto del equipo campeón. Revolucionó el fútbol local con sus tácticas innovadoras y su enfoque en la disciplina física.",
-        imagen: ""
-    }
-];
+export const revalidate = 60;
 
-export default function LeyendasPage() {
+export default async function LeyendasPage() {
+    const leyendas = await getLeyendas();
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -46,26 +19,49 @@ export default function LeyendasPage() {
                 </p>
             </header>
 
+
             <div className={styles.grid}>
                 {leyendas.map((leyenda) => (
-                    <div key={leyenda.id} className={styles.card}>
-                        <div className={styles.photoFrame}>
-                            {/* Imágen simulada */}
-                        </div>
-                        <h2 className={styles.name}>{leyenda.nombre}</h2>
-                        <div className={styles.role}>{leyenda.rol} ({leyenda.periodo})</div>
-                        <p className={styles.bio}>{leyenda.bio}</p>
-                        <div className={styles.stats}>
-                            <div className={styles.statItem}>
-                                <span className={styles.statValue}>{leyenda.partidos}</span>
-                                <span className={styles.statValue}>PJ</span>
+                    <Link href={`/leyendas/${leyenda.slug?.current}`} key={leyenda._id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <div className={styles.card}>
+                            <div className={styles.photoFrame}>
+                                {leyenda.imagen ? (
+                                    <Image
+                                        src={urlFor(leyenda.imagen).width(400).height(400).url()}
+                                        alt={leyenda.nombre}
+                                        fill
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                ) : (
+                                    <div style={{ width: '100%', height: '100%', backgroundColor: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>
+                                        <span>Sin foto</span>
+                                    </div>
+                                )}
                             </div>
-                            <div className={styles.statItem}>
-                                <span className={styles.statValue}>{leyenda.goles}</span>
-                                <span>Goles</span>
+                            <h2 className={styles.name}>{leyenda.nombre}</h2>
+                            <div className={styles.role}>
+                                {leyenda.roles && leyenda.roles.length > 0
+                                    ? leyenda.roles.join(' - ')
+                                    : leyenda.rol} { /* Fallback to old field if roles empty */}
+                                <div style={{ fontSize: '0.9em', opacity: 0.8 }}>({leyenda.periodo})</div>
+                            </div>
+                            <p className={styles.bio}>{leyenda.bio}</p>
+                            <div className={styles.stats}>
+                                {leyenda.partidos !== undefined && (
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statValue}>{leyenda.partidos}</span>
+                                        <span className={styles.statValue}>PJ</span>
+                                    </div>
+                                )}
+                                {leyenda.goles !== undefined && (
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statValue}>{leyenda.goles}</span>
+                                        <span>Goles</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

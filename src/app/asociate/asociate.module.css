@@ -39,9 +39,7 @@
     align-items: start;
 }
 
-.contentGrid>div:last-child {
-    /* padding-top: 2rem; REMOVED for alignment */
-}
+
 
 /* Form Styles - RESTORED */
 .formSection {

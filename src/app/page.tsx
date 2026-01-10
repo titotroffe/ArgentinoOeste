@@ -14,10 +14,9 @@ export default async function Home() {
 
   return (
     <div className={styles.main}>
-      {/* HERO SECTION: Nota Principal (Más reciente) */}
       {notaPrincipal && (
-        <section className={styles.hero}>
-          <div className={styles.heroContent}>
+        <section className={styles.hero} style={{ gridTemplateColumns: (notaPrincipal.imagenPortada || notaPrincipal.imagen) ? '2fr 1fr' : '1fr' }}>
+          <div className={styles.heroContent} style={{ borderRight: (notaPrincipal.imagenPortada || notaPrincipal.imagen) ? undefined : 'none' }}>
             <h1 className={styles.title}>{notaPrincipal.titulo}</h1>
             <p className={styles.subtitle}>
               {notaPrincipal.bajada}
@@ -32,29 +31,30 @@ export default async function Home() {
               )}
             </div>
           </div>
-          <div className={styles.heroImage}>
-            <div className={styles.heroImageContainer}>
+          {/* Only render image column if image exists */}
+          {(notaPrincipal.imagenPortada || notaPrincipal.imagen) && (
+            <div className={styles.heroImage}>
+              <div className={styles.heroImageContainer}>
+                {(() => {
+                  const img = notaPrincipal.imagenPortada || notaPrincipal.imagen;
+                  return img && (
+                    <Image
+                      src={urlFor(img).height(800).url()}
+                      alt={notaPrincipal.titulo}
+                      width={800}
+                      height={600}
+                      style={{ width: 'auto', height: '400px', maxWidth: '100%', objectFit: 'contain' }}
+                      priority
+                    />
+                  );
+                })()}
+              </div>
               {(() => {
-                const img = notaPrincipal.imagenPortada || notaPrincipal.imagen;
-                return img ? (
-                  <Image
-                    src={urlFor(img).height(800).url()} // Fetch higher res for height
-                    alt={notaPrincipal.titulo}
-                    width={800} // Aspect ratio placeholder
-                    height={600}
-                    style={{ width: 'auto', height: '400px', maxWidth: '100%', objectFit: 'contain' }}
-                    priority
-                  />
-                ) : (
-                  <div style={{ width: '300px', height: '400px', backgroundColor: '#555' }}></div>
-                );
+                const epigrafe = notaPrincipal.imagenPortada?.epigrafe || notaPrincipal.imagen?.epigrafe;
+                return epigrafe && <p className={styles.imageCaption}>{epigrafe}</p>;
               })()}
             </div>
-            {(() => {
-              const epigrafe = notaPrincipal.imagenPortada?.epigrafe || notaPrincipal.imagen?.epigrafe;
-              return epigrafe && <p className={styles.imageCaption}>{epigrafe}</p>;
-            })()}
-          </div>
+          )}
         </section>
       )}
 

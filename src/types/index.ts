@@ -78,3 +78,28 @@ export interface EstadisticaAnual {
     logros?: string[];
     historia?: string; // Texto descriptivo del año
 }
+
+export interface Leyenda {
+    _id: string;
+    nombre: string;
+    slug?: { current: string };
+    roles?: string[];
+    rol: string; // kept as position/title
+    periodo: string;
+    partidos?: number;
+    goles?: number;
+    bio: string;
+    bioCompleta?: any[];
+    imagen?: {
+        asset: {
+            url: string;
+            metadata?: {
+                dimensions: {
+                    width: number;
+                    height: number;
+                }
+            }
+        };
+        alt?: string;
+    };
+}

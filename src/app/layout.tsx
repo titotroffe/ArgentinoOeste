@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body className={`${playfair.variable} ${courier.variable} ${pinyonScript.variable}`}>
         {/* El div paper-texture ahora es redundante si usamos body::before en globals, pero lo dejamos por si acaso */}
         {/* <div className="paper-texture"></div> */}
