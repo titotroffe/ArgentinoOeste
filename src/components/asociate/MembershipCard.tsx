@@ -137,24 +137,23 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                             </text>
 
                             {/* Middle Text: Argentino Oeste */}
-                            {/* Middle Text: Argentino Oeste */}
-                            <text
-                                x="50%"
-                                y="160"
-                                textLength="220"
-                                lengthAdjust="spacingAndGlyphs"
-                                textAnchor="middle"
-                                className={styles.embossedText}
-                                style={{
-                                    fill: 'url(#goldGradient)',
-                                    fontFamily: '"Arial Narrow", "Arial", sans-serif',
-                                    fontWeight: 'bold',
-                                    fontSize: '36px',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0px'
-                                }}>
-                                Argentino Oeste
-                            </text>
+                            <g transform="scale(1, 1.5)">
+                                <text
+                                    x="50%"
+                                    y="108"
+                                    textAnchor="middle"
+                                    className={styles.embossedText}
+                                    style={{
+                                        fill: 'url(#goldGradient)',
+                                        fontFamily: '"Arial Narrow", "Arial", sans-serif',
+                                        fontWeight: 'bold',
+                                        fontSize: '24px',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0px'
+                                    }}>
+                                    Argentino Oeste
+                                </text>
+                            </g>
 
                             {/* Separator Dot 2 */}
                             <text x="50%" y="180" textAnchor="middle" className={styles.embossedText} style={{ fill: 'url(#goldGradient)', fontFamily: '"Arial Narrow", "Arial", sans-serif', fontWeight: 'bold', fontSize: '20px' }}>
