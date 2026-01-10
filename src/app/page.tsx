@@ -15,8 +15,8 @@ export default async function Home() {
   return (
     <div className={styles.main}>
       {notaPrincipal && (
-        <section className={styles.hero} style={{ gridTemplateColumns: (notaPrincipal.imagenPortada || notaPrincipal.imagen) ? '2fr 1fr' : '1fr' }}>
-          <div className={styles.heroContent} style={{ borderRight: (notaPrincipal.imagenPortada || notaPrincipal.imagen) ? undefined : 'none' }}>
+        <section className={`${styles.hero} ${(notaPrincipal.imagenPortada || notaPrincipal.imagen) ? styles.hasImage : styles.noImage}`}>
+          <div className={styles.heroContent}>
             <h1 className={styles.title}>{notaPrincipal.titulo}</h1>
             <p className={styles.subtitle}>
               {notaPrincipal.bajada}
@@ -43,7 +43,7 @@ export default async function Home() {
                       alt={notaPrincipal.titulo}
                       width={800}
                       height={600}
-                      style={{ width: 'auto', height: '400px', maxWidth: '100%', objectFit: 'contain' }}
+                      className={styles.featuredImage}
                       priority
                     />
                   );
@@ -59,37 +59,40 @@ export default async function Home() {
       )}
 
       {/* ÚLTIMAS NOTICIAS GRID */}
+      {/* ÚLTIMAS NOTICIAS GRID */}
       {otrasNotas.length > 0 && (
-        <section className={styles.grid}>
-          <h2 style={{ width: '100%', marginBottom: '1.5rem', fontFamily: 'var(--font-title)', fontSize: '2rem', textTransform: 'uppercase' }}>
+        <section className={styles.newsSection}>
+          <h2 className={styles.centeredTitle}>
             Últimas Noticias
           </h2>
-          {otrasNotas.map((nota) => (
-            <div key={nota._id} className={styles.card}>
-              {(() => {
-                const img = nota.imagenPortada || nota.imagen;
-                return img && (
-                  <div style={{ position: 'relative', width: '100%', height: '200px', marginBottom: '1rem', borderRadius: '4px', overflow: 'hidden' }}>
-                    <Image
-                      src={urlFor(img).width(400).height(300).url()}
-                      alt={nota.titulo}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                );
-              })()}
-              <h3 className={styles.cardTitle}>{nota.titulo}</h3>
-              <p className={styles.cardText} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                {nota.bajada}
-              </p>
-              {nota.slug?.current && (
-                <Link href={`/nota/${nota.slug.current}`} className={styles.readMore}>
-                  LEER MÁS &rarr;
-                </Link>
-              )}
-            </div>
-          ))}
+          <div className={styles.grid}>
+            {otrasNotas.map((nota) => (
+              <div key={nota._id} className={styles.card}>
+                {(() => {
+                  const img = nota.imagenPortada || nota.imagen;
+                  return img && (
+                    <div style={{ position: 'relative', width: '100%', height: '200px', marginBottom: '1rem', borderRadius: '4px', overflow: 'hidden' }}>
+                      <Image
+                        src={urlFor(img).width(400).height(300).url()}
+                        alt={nota.titulo}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  );
+                })()}
+                <h3 className={styles.cardTitle}>{nota.titulo}</h3>
+                <p className={styles.cardText} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                  {nota.bajada}
+                </p>
+                {nota.slug?.current && (
+                  <Link href={`/nota/${nota.slug.current}`} className={styles.readMore}>
+                    LEER MÁS &rarr;
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
         </section>
       )}
 
