@@ -25,7 +25,7 @@ const pinyonScript = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
-  title: "El Cronista de Argentino Oeste",
+  title: "Argentino Oeste - La Gaceta de la Estación",
   description: "Archivo histórico y estadísticas del club Argentino Oeste.",
 };
 
