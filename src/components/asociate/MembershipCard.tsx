@@ -3,8 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '../../app/asociate/asociate.module.css';
-import logo from '../../img/Escudos/ArgOeste.png';
-import sello from '../../img/sello.png';
+const sello = '/img/sello.png';
 
 interface MembershipCardProps {
     name: string;
@@ -34,7 +33,10 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                         {/* Centered Circular Photo */}
                         <div className={styles.vintagePhotoFrame}>
                             {photoUrl ? (
-                                <img src={photoUrl} alt="Foto Socio" className={styles.memberPhoto} />
+                                <>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={photoUrl} alt="Foto Socio" className={styles.memberPhoto} />
+                                </>
                             ) : (
                                 <div style={{ width: '100%', height: '100%', backgroundColor: '#eee' }}></div>
                             )}
@@ -42,10 +44,10 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
 
                         {/* Stamps - Left and Right */}
                         <div className={styles.stampLeft}>
-                            <Image src={sello} alt="Sello" style={{ width: '100%', height: 'auto' }} />
+                            <Image src={sello} alt="Sello" width={80} height={80} style={{ width: '100%', height: 'auto' }} />
                         </div>
                         <div className={styles.stampRight}>
-                            <Image src={sello} alt="Sello" style={{ width: '100%', height: 'auto' }} />
+                            <Image src={sello} alt="Sello" width={80} height={80} style={{ width: '100%', height: 'auto' }} />
                         </div>
 
                         {/* Signatures / Authority */}
@@ -113,7 +115,6 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                     {/* FRONT FACE (Closed Cover) - Leather & Gold */}
                     <div className={styles.front}>
 
-                        {/* Unified SVG for all Text to ensure identical styling */}
                         <svg width="100%" height="100%" viewBox="0 0 260 300" style={{ overflow: 'visible', maxWidth: '100%', maxHeight: '100%' }}>
                             <defs>
                                 <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -123,7 +124,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                 </linearGradient>
                             </defs>
 
-                            {/* Curved Top Text - Reverted to original curve as requested */}
+                            {/* Curved Top Text - Club Atlético */}
                             <path id="curve" d="M 35,145 Q 130,10 225,145" fill="transparent" />
                             <text className={styles.embossedText} style={{ fill: 'url(#goldGradient)', fontFamily: '"Arial Narrow", "Arial", sans-serif', fontWeight: 'bold', fontSize: '28px', textTransform: 'uppercase', letterSpacing: '2px' }}>
                                 <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
@@ -149,7 +150,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                     fontWeight: 'bold',
                                     fontSize: '24px',
                                     textTransform: 'uppercase',
-                                    letterSpacing: '0px'
+                                    letterSpacing: '1px'
                                 }}>
                                 Argentino Oeste
                             </text>
@@ -200,7 +201,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
 
                                 {/* Stamp Overlay - Centered and much lower */}
                                 <div className={styles.stampRight} style={{ position: 'absolute', bottom: '-57%', left: '50%', transform: 'translateX(-50%) rotate(12deg)', right: 'auto', pointerEvents: 'none' }}>
-                                    <Image src={sello} alt="Sello" style={{ width: '100%', height: 'auto' }} />
+                                    <Image src={sello} alt="Sello" width={100} height={100} style={{ width: '100%', height: 'auto' }} />
                                 </div>
 
                                 {/* Tesorero Signature */}

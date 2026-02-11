@@ -1,4 +1,4 @@
-import { defineCliConfig } from 'sanity/cli'
+import { defineType } from 'sanity'
 import { createClient } from '@sanity/client'
 
 // Script to migrate initial data

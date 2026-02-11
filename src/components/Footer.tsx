@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -11,9 +12,9 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h4>Enlaces</h4>
                     <ul>
-                        <li><a href="/">Inicio</a></li>
-                        <li><a href="/historia/2023">Historia</a></li>
-                        <li><a href="/buscador">Buscador</a></li>
+                        <li><Link href="/">Inicio</Link></li>
+                        <li><Link href="/historia/2023">Historia</Link></li>
+                        <li><Link href="/buscador">Buscador</Link></li>
                     </ul>
                 </div>
                 <div className={styles.column}>

@@ -144,7 +144,7 @@
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
-        url("../../img/fondolibro.png");
+        url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay, multiply, multiply;
@@ -385,7 +385,7 @@
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
-        url("../../img/fondolibro.png");
+        url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay, multiply, multiply;
@@ -426,7 +426,7 @@
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
-        url("../../img/fondolibro.png");
+        url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay, multiply, multiply;

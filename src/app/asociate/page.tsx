@@ -80,7 +80,7 @@ export default function AsociatePage() {
                             </div>
                         </div>
 
-                        <div style={{ marginTop: '2rem' }}>
+                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <Button size="lg" variant="primary" onClick={handleDownload}>
                                 DESCARGAR CARNET
                             </Button>

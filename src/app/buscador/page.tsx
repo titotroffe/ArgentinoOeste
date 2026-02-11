@@ -2,15 +2,12 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, Filter, Calendar, Users, MapPin, User } from 'lucide-react';
-import Button from '@/components/ui/Button';
-import { Partido, Jugador } from '@/types';
+import { Search, Filter, MapPin, User, Users } from 'lucide-react';
 import { partidos, jugadores } from '@/data/mock-data';
 import styles from './page.module.css';
 
 export default function BuscadorPage() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterType, setFilterType] = useState('all');
 
     const filteredMatches = useMemo(() => {
         if (!searchTerm) return partidos;

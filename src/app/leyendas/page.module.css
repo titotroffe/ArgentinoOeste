@@ -99,12 +99,6 @@
     line-height: 1.6;
     text-align: left;
     margin-bottom: 1rem;
-    /* Limit bio to 3 lines to maintain consistency */
-    display: -webkit-box;
-    line-clamp: 4;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     flex-grow: 1;
 }
 

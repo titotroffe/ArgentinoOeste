@@ -1,3 +1,5 @@
+import { PortableTextBlock } from 'sanity';
+
 export interface Jugador {
     id: string;
     nombre: string;
@@ -33,10 +35,10 @@ export interface Nota {
     bajada: string;
     fecha: string;
     autor?: string;
-    cuerpo: any[]; // Portable Text Blocks
+    cuerpo: PortableTextBlock[]; // Portable Text Blocks
     imagenPortada?: {
         asset: { url: string };
-        hotspot?: any;
+        hotspot?: { x: number; y: number; height: number; width: number };
         epigrafe?: string;
     };
     imagen?: {
@@ -88,8 +90,12 @@ export interface Leyenda {
     periodo: string;
     partidos?: number;
     goles?: number;
+    partidosDirigidos?: number;
+    ganados?: number;
+    empatados?: number;
+    perdidos?: number;
     bio: string;
-    bioCompleta?: any[];
+    bioCompleta?: PortableTextBlock[];
     imagen?: {
         asset: {
             url: string;

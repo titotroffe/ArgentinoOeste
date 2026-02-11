@@ -1,0 +1,39 @@
+
+> temp-app@0.1.0 lint
+> eslint
+
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\components\Header.tsx
+  13:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\components\Header.tsx:13:9
+  11 |
+  12 |     useEffect(() => {
+> 13 |         setFechaHoy(new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  14 |     }, []);
+  15 |
+  16 |     const toggleMenu = () => {  react-hooks/set-state-in-effect
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\components\asociate\MembershipCard.tsx
+   6:7   warning  'logo' is assigned a value but never used                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  37:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\sanity\migrate-initial-data.ts
+  1:10  warning  'defineCliConfig' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\sanity\migrate.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:1   error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\Tito\Desktop\Argentino Oeste Historia\Web\src\types\index.ts
+  1:38  warning  'SanityImage' is defined but never used  @typescript-eslint/no-unused-vars
+
+??? 7 problems (3 errors, 4 warnings)
+

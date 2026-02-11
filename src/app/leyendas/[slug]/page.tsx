@@ -28,7 +28,7 @@ export default async function LeyendaDetailPage({ params }: PageProps) {
                 <h1 className={styles.title}>{leyenda.nombre}</h1>
                 <div className={styles.role}>
                     {leyenda.roles && leyenda.roles.length > 0
-                        ? leyenda.roles.join(' - ')
+                        ? leyenda.roles.map(r => r === 'DT' ? 'Director Técnico' : r).join(' - ')
                         : leyenda.rol}
                 </div>
                 <div style={{ fontSize: '1.2rem', marginTop: '0.5rem' }}>{leyenda.periodo}</div>
@@ -50,17 +50,51 @@ export default async function LeyendaDetailPage({ params }: PageProps) {
             )}
 
             <div className={styles.statsGrid}>
-                {leyenda.partidos !== undefined && (
-                    <div className={styles.statBox}>
-                        <span className={styles.statLabel}>Partidos</span>
-                        <span className={styles.statValue}>{leyenda.partidos}</span>
-                    </div>
+                {/* Player Stats */}
+                {(leyenda.roles?.includes('Jugador') || (!leyenda.roles?.includes('DT') && !leyenda.rol?.includes('Técnico') && !leyenda.rol?.includes('DT'))) && (
+                    <>
+                        {leyenda.partidos !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Partidos</span>
+                                <span className={styles.statValue}>{leyenda.partidos}</span>
+                            </div>
+                        )}
+                        {leyenda.goles !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Goles</span>
+                                <span className={styles.statValue}>{leyenda.goles}</span>
+                            </div>
+                        )}
+                    </>
                 )}
-                {leyenda.goles !== undefined && (
-                    <div className={styles.statBox}>
-                        <span className={styles.statLabel}>Goles</span>
-                        <span className={styles.statValue}>{leyenda.goles}</span>
-                    </div>
+                {/* Coach Stats */}
+                {(leyenda.roles?.includes('DT') || leyenda.rol?.includes('Técnico') || leyenda.rol?.includes('DT')) && (
+                    <>
+                        {leyenda.partidosDirigidos !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Partidos Dirigidos</span>
+                                <span className={styles.statValue}>{leyenda.partidosDirigidos}</span>
+                            </div>
+                        )}
+                        {leyenda.ganados !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Ganados</span>
+                                <span className={styles.statValue}>{leyenda.ganados}</span>
+                            </div>
+                        )}
+                        {leyenda.empatados !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Empatados</span>
+                                <span className={styles.statValue}>{leyenda.empatados}</span>
+                            </div>
+                        )}
+                        {leyenda.perdidos !== undefined && (
+                            <div className={styles.statBox}>
+                                <span className={styles.statLabel}>Perdidos</span>
+                                <span className={styles.statValue}>{leyenda.perdidos}</span>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 

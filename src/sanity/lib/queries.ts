@@ -67,8 +67,32 @@ export const LEYENDAS_QUERY = defineQuery(`
     roles,
     rol,
     periodo,
+    periodo,
     partidos,
     goles,
+    partidosDirigidos,
+    ganados,
+    empatados,
+    perdidos,
+    bio,
+    imagen {
+        asset->{
+            _id,
+            url
+        },
+        alt
+    }
+  }
+`);
+
+export const LATEST_LEYENDAS_QUERY = defineQuery(`
+  *[_type == "leyenda"] | order(_createdAt desc)[0...3] {
+    _id,
+    nombre,
+    slug,
+    roles,
+    rol,
+    periodo,
     bio,
     imagen {
         asset->{
@@ -90,6 +114,10 @@ export const LEYENDA_BY_SLUG_QUERY = defineQuery(`
     periodo,
     partidos,
     goles,
+    partidosDirigidos,
+    ganados,
+    empatados,
+    perdidos,
     bio,
     bioCompleta,
     imagen {

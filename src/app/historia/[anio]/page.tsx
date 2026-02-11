@@ -1,14 +1,9 @@
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Trophy, Users, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, Trophy } from 'lucide-react';
 import { historiaAnual, partidos } from '@/data/mock-data';
 import styles from './page.module.css';
 
-interface PageProps {
-    params: {
-        anio: string;
-    };
-}
+
 
 export async function generateStaticParams() {
     return historiaAnual.map((h) => ({

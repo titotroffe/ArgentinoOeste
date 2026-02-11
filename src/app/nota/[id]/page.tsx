@@ -55,8 +55,8 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
                         value={nota.cuerpo}
                         components={{
                             block: {
-                                normal: ({ children }: any) => <p className="text-justify">{children}</p>,
-                                h3: ({ children }: any) => <h3 className="text-xl font-bold mt-6 mb-2 uppercase">{children}</h3>,
+                                normal: ({ children }: { children?: React.ReactNode }) => <p className="text-justify">{children}</p>,
+                                h3: ({ children }: { children?: React.ReactNode }) => <h3 className="text-xl font-bold mt-6 mb-2 uppercase">{children}</h3>,
                             }
                         }}
                     />

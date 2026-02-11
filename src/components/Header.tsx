@@ -3,11 +3,16 @@
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import styles from './Header.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const fechaHoy = new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const [fechaHoy, setFechaHoy] = useState('');
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setFechaHoy(new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

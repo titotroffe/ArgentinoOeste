@@ -54,13 +54,43 @@ export const leyenda = defineType({
             name: 'partidos',
             title: 'Partidos Jugados',
             type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             hidden: ({ document }: any) => !document?.roles?.includes('Jugador'),
         }),
         defineField({
             name: 'goles',
             title: 'Goles',
             type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             hidden: ({ document }: any) => !document?.roles?.includes('Jugador'),
+        }),
+        defineField({
+            name: 'partidosDirigidos',
+            title: 'Partidos Dirigidos',
+            type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hidden: ({ document }: any) => !document?.roles?.includes('DT'),
+        }),
+        defineField({
+            name: 'ganados',
+            title: 'Partidos Ganados',
+            type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hidden: ({ document }: any) => !document?.roles?.includes('DT'),
+        }),
+        defineField({
+            name: 'empatados',
+            title: 'Partidos Empatados',
+            type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hidden: ({ document }: any) => !document?.roles?.includes('DT'),
+        }),
+        defineField({
+            name: 'perdidos',
+            title: 'Partidos Perdidos',
+            type: 'number',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hidden: ({ document }: any) => !document?.roles?.includes('DT'),
         }),
         defineField({
             name: 'bio',

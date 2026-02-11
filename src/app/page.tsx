@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image'; // Added Image import
 import Button from '@/components/ui/Button';
 import styles from './page.module.css';
-import { getNotas } from '@/lib/db';
+import { getNotas, getLatestLeyendas } from '@/lib/db';
 import { urlFor } from '@/sanity/lib/image';
 
 // Revalidate every 60 seconds (ISR)
@@ -10,6 +10,7 @@ export const revalidate = 60;
 
 export default async function Home() {
   const notas = await getNotas();
+  const latestLeyendas = await getLatestLeyendas();
   const [notaPrincipal, ...otrasNotas] = notas;
 
   return (
@@ -59,7 +60,6 @@ export default async function Home() {
       )}
 
       {/* ÚLTIMAS NOTICIAS GRID */}
-      {/* ÚLTIMAS NOTICIAS GRID */}
       {otrasNotas.length > 0 && (
         <section className={styles.newsSection}>
           <h2 className={styles.centeredTitle}>
@@ -71,18 +71,18 @@ export default async function Home() {
                 {(() => {
                   const img = nota.imagenPortada || nota.imagen;
                   return img && (
-                    <div style={{ position: 'relative', width: '100%', height: '200px', marginBottom: '1rem', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div className={styles.cardImageContainer}>
                       <Image
                         src={urlFor(img).width(400).height(300).url()}
                         alt={nota.titulo}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        className={styles.cardImage}
                       />
                     </div>
                   );
                 })()}
                 <h3 className={styles.cardTitle}>{nota.titulo}</h3>
-                <p className={styles.cardText} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                <p className={`${styles.cardText} ${styles.cardExcerpt}`}>
                   {nota.bajada}
                 </p>
                 {nota.slug?.current && (
@@ -96,8 +96,32 @@ export default async function Home() {
         </section>
       )}
 
+      {/* ÚLTIMAS LEYENDAS GRID */}
+      {latestLeyendas && latestLeyendas.length > 0 && (
+        <section className={styles.newsSection}>
+          <h2 className={styles.centeredTitle}>
+            Nuevas Leyendas en el Salón de la Fama
+          </h2>
+          <div className={styles.grid}>
+            {latestLeyendas.map((leyenda) => (
+              <div key={leyenda._id} className={styles.card}>
+                <h3 className={styles.cardTitle}>{leyenda.nombre}</h3>
+                <p className={`${styles.cardText} ${styles.cardExcerpt}`}>
+                  {leyenda.bio}
+                </p>
+                {leyenda.slug?.current && (
+                  <Link href={`/leyendas/${leyenda.slug.current}`} className={styles.readMore}>
+                    VER PERFIL &rarr;
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* SECCIONES / ACCESOS RÁPIDOS (Static) */}
-      <section className={styles.grid} style={{ marginTop: '3rem', borderTop: '1px solid var(--border-thin)', paddingTop: '3rem' }}>
+      <section className={`${styles.grid} ${styles.quickAccessSection}`}>
         <div className={styles.card}>
           <h3 className={styles.cardTitle}>Navegar por la Historia</h3>
           <p className={styles.cardText}>

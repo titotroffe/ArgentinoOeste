@@ -10,7 +10,7 @@ async function verify() {
     try {
         const legends = await client.fetch(query)
         console.log('Found legends:', legends.length)
-        legends.forEach((l: any) => console.log(`- ${l.nombre} (${l._id})`))
+        legends.forEach((l: { _id: string; nombre: string }) => console.log(`- ${l.nombre} (${l._id})`))
     } catch (err) {
         console.error('Query failed:', err)
     }
