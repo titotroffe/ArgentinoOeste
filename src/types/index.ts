@@ -94,6 +94,7 @@ export interface Leyenda {
     ganados?: number;
     empatados?: number;
     perdidos?: number;
+    titulos?: { titulo: string; anio?: string }[];
     bio: string;
     bioCompleta?: PortableTextBlock[];
     imagen?: {

@@ -74,6 +74,7 @@ export const LEYENDAS_QUERY = defineQuery(`
     ganados,
     empatados,
     perdidos,
+    titulos,
     bio,
     imagen {
         asset->{
@@ -118,6 +119,7 @@ export const LEYENDA_BY_SLUG_QUERY = defineQuery(`
     ganados,
     empatados,
     perdidos,
+    titulos,
     bio,
     bioCompleta,
     imagen {

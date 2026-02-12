@@ -93,6 +93,31 @@ export const leyenda = defineType({
             hidden: ({ document }: any) => !document?.roles?.includes('DT'),
         }),
         defineField({
+            name: 'titulos',
+            title: 'Títulos Logrados',
+            type: 'array',
+            of: [{
+                type: 'object',
+                fields: [
+                    {
+                        name: 'titulo',
+                        title: 'Torneo',
+                        type: 'string',
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        validation: (Rule: any) => Rule.required(),
+                    },
+                    {
+                        name: 'anio',
+                        title: 'Año',
+                        type: 'string',
+                    },
+                ],
+                preview: {
+                    select: { title: 'titulo', subtitle: 'anio' },
+                },
+            }],
+        }),
+        defineField({
             name: 'bio',
             title: 'Biografía Corta / Resumen (Card)',
             type: 'text',

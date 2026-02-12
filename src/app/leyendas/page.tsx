@@ -59,7 +59,7 @@ export default async function LeyendasPage() {
                                         {leyenda.goles !== undefined && (
                                             <div className={styles.statItem}>
                                                 <span className={styles.statValue}>{leyenda.goles}</span>
-                                                <span>Goles</span>
+                                                <span className={styles.statValue}>Goles</span>
                                             </div>
                                         )}
                                     </>
