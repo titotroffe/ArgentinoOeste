@@ -51,7 +51,7 @@ export default async function LeyendaDetailPage({ params }: PageProps) {
 
             <div className={styles.statsGrid}>
                 {/* Player Stats */}
-                {(leyenda.roles?.includes('Jugador') || (!leyenda.roles?.includes('DT') && !leyenda.rol?.includes('Técnico') && !leyenda.rol?.includes('DT'))) && (
+                {(leyenda.roles?.includes('Jugador') || (!leyenda.roles?.includes('DT') && !leyenda.roles?.includes('Dirigente') && !leyenda.rol?.includes('Técnico') && !leyenda.rol?.includes('DT') && !leyenda.rol?.includes('Dirigente'))) && (
                     <>
                         {leyenda.partidos !== undefined && (
                             <div className={styles.statBox}>
@@ -95,6 +95,13 @@ export default async function LeyendaDetailPage({ params }: PageProps) {
                             </div>
                         )}
                     </>
+                )}
+                {/* Presidency Years */}
+                {leyenda.aniosPresidencia && (
+                    <div className={styles.statBox}>
+                        <span className={styles.statLabel} style={{ textTransform: 'uppercase' }}>{leyenda.rol}</span>
+                        <span className={styles.statValue}>{leyenda.aniosPresidencia}</span>
+                    </div>
                 )}
             </div>
 

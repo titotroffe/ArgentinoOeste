@@ -1,0 +1,72 @@
+
+=== 1963 (GID 1673919991) ===
+Total rows: 118
+Regex matches found: 15
+
+ROWS 88 to 117:
+Row 88: [1]="Noe" | [4]="Echaniz" | [6]="Echaniz" | [9]="Aguilar" | [11]="Nervis" | [13]="⚽" | [14]="Donadio"
+Row 89: [1]="Otero" | [4]="Borda" | [6]="Borda" | [9]="Villaruel" | [11]="Echaniz" | [14]="Canale"
+Row 90: [1]="Ferrari" | [4]="Luque" | [6]="Luque" | [8]="⚽⚽" | [9]="Diez" | [11]="Fernandez" | [12]="⚽" | [14]="Toledo"
+Row 91: [1]="Mari" | [2]="⚽" | [4]="Fontana" | [6]="Herrera" | [7]="⚽" | [9]="Rodriguez" | [11]="Luque" | [13]="⚽⚽" | [14]="Gimenez"
+Row 92: [1]="Machado" | [3]="⚽⚽" | [4]="Herrera" | [6]="Fontana" | [7]="⚽" | [8]="⚽⚽" | [9]="Karami" | [11]="Fontana" | [13]="⚽" | [14]="Figueredo"
+Row 93: [1]="Rosadilla" | [4]="Acevedo" | [6]="Romero" | [7]="⚽" | [9]="Demassi" | [11]="Herrera" | [12]="⚽⚽⚽" | [14]="Alegretti"
+Row 94: [1]="Castro" | [4]="Cortopassi" | [6]="Lecuna" | [8]="⚽" | [9]="Sola" | [11]="Forgues" | [14]="Montaldo"
+Row 95: [1]="Arbitro" | [3]="Rosarino" | [6]="Arbitro" | [8]="Juan Carlos Videla" | [11]="Lecuna" | [14]="Rodriguez"
+Row 96: [1]="Cancha" | [3]="Conesa" | [6]="Cancha" | [8]="Argentino Oeste" | [11]="Cambios" | [14]="Cambios"
+Row 97: [1]="Director Tecnico" | [6]="Director Tecnico" | [11]="Carriere" | [12]="1"
+Row 98: [1]="Maximo Oyola" | [6]="Maximo Oyola" | [11]="Arbitro" | [13]="Jose Diaz"
+Row 99: [11]="Cancha" | [13]="Argentino Oeste"
+Row 100: [1]="8 de Diciembre de 1963 - Torneo Oficial - Fecha 13" | [6]="No se Jugo - Fecha 14" | [11]="Director Tecnico"
+Row 101: [1]="Local" | [2]="Resultado" | [4]="Visitante" | [6]="Local" | [7]="Resultado" | [9]="Visitante" | [11]="Maximo Oyola"
+Row 102: [1]="Parana" | [2]="3" | [3]="2" | [4]="Argentino Oeste" | [6]="La Emilia" | [9]="Argentino Oeste"
+Row 103: [1]="Arnija" | [4]="Maggiori"
+Row 104: [1]="Luque" | [4]="Tartabini"
+Row 105: [1]="Guerrera" | [4]="Mansilla"
+Row 106: [1]="Molins" | [4]="Nervis"
+Row 107: [1]="Mendoza" | [2]="⚽⚽" | [4]="Echaniz"
+Row 108: [1]="Sosa" | [4]="Fernandez"
+Row 109: [1]="Bruno" | [3]="⚽" | [4]="Chervo"
+Row 110: [1]="Moreno" | [4]="Fontana"
+Row 111: [1]="Salinas" | [2]="⚽" | [4]="Herrera"
+Row 112: [1]="Cordisco" | [4]="Forgues"
+Row 113: [1]="Lencina" | [3]="⚽" | [4]="Velazquez"
+Row 114: [1]="Arbitro" | [3]="Modesto Arnedillo" | [6]="Arbitro"
+Row 115: [1]="Cancha" | [3]="Parana" | [6]="Cancha"
+Row 116: [1]="Director Tecnico" | [6]="Director Tecnico"
+Row 117: [1]="Maximo Oyola"
+
+=== 2025 Clausura (GID 2104956215) ===
+Total rows: 207
+Regex matches found: 15
+
+ROWS 177 to 206:
+Row 177: [1]="Arbitro" | [3]="Luis Amarilla" | [6]="Arbitro" | [8]="Sebastian Sena"
+Row 178: [1]="Cancha" | [3]="General San Martin" | [6]="Cancha" | [8]="12 de Octubre"
+Row 179: [1]="Director Tecnico" | [6]="Director Tecnico"
+Row 180: [1]="Cesar Cecchi" | [6]="Cesar Cecchi"
+Row 181: (empty)
+Row 182: [1]="17 de Noviembre de 2025 - Fecha 15"
+Row 183: [1]="Local" | [2]="Resultado" | [4]="Visitante"
+Row 184: [1]="12 de Octubre" | [2]="1" | [3]="3" | [4]="Argentino Oeste"
+Row 185: [1]="Titulares" | [4]="Titulares"
+Row 186: [1]="Mariano Jaime" | [4]="Jonas Rosales"
+Row 187: [1]="Nelson Guerra" | [3]="⚽" | [4]="Julian Rivero"
+Row 188: [1]="Juan Lanchiotti" | [4]="Nicolas Aquino"
+Row 189: [1]="Joaquin Alvarez" | [4]="Ariel Alegre"
+Row 190: [1]="Pablo Inza" | [4]="Luis Mota"
+Row 191: [1]="Gabriel Ledesma" | [4]="Aaron Paz"
+Row 192: [1]="Alan Argarañaz" | [4]="Joel Silva"
+Row 193: [1]="Valentin Peralta" | [4]="Miguel Meza"
+Row 194: [1]="Rodrigo Ponce" | [3]="⚽⚽" | [4]="Alan Galeano"
+Row 195: [1]="Danilo Lemo" | [2]="⚽" | [4]="Daniel Mendoza"
+Row 196: [1]="Lautaro Ereño" | [4]="Facundo Luque"
+Row 197: [1]="Cambios" | [4]="Cambios"
+Row 198: [1]="Federico Escobar" | [4]="Lucas Diaz"
+Row 199: [1]="Pablo Cordobana" | [4]="Oscar Avalos"
+Row 200: [1]="Blas Ferrari" | [4]="Diego Galeano"
+Row 201: [1]="Rodrigo Mendoza" | [4]="Benjamin Acosta"
+Row 202: [1]="Gonzalo Chavez" | [4]="Tobias Morales"
+Row 203: [1]="Arbitro" | [3]="Blas Gonzalez"
+Row 204: [1]="Cancha" | [3]="12 de Octubre"
+Row 205: [1]="Director Tecnico"
+Row 206: [1]="Cesar Cecchi"

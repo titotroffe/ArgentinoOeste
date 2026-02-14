@@ -1,0 +1,486 @@
+.container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 80vh;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: var(--border-double);
+    padding-bottom: 2rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--ink-black);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--ink-light);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Search & Filters */
+.searchBox {
+    background-color: #fff;
+    padding: 1.5rem;
+    border: 1px solid var(--ink-black);
+    margin-bottom: 1.5rem;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.inputWrapper {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-deep-green);
+}
+
+.input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    border: 1px solid var(--ink-black);
+    border-radius: 0;
+    outline: none;
+    background-color: var(--paper-bg);
+    color: var(--ink-black);
+}
+
+.input:focus {
+    border-color: var(--club-green);
+    background-color: #fff;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.filterRow {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.selectWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-deep-green);
+}
+
+.select {
+    padding: 0.4rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: var(--ink-black);
+    cursor: pointer;
+}
+
+.clearBtn {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.2s;
+}
+
+.clearBtn:hover {
+    border-color: var(--ink-black);
+    color: var(--ink-black);
+}
+
+.quickFilters {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filterLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: #666;
+    margin-right: 0.25rem;
+}
+
+.filterTag {
+    background-color: white;
+    border: 1px solid var(--color-sage);
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-deep-green);
+}
+
+.filterTag:hover,
+.filterTagActive {
+    background-color: var(--color-hunter-green);
+    color: white;
+    border-color: var(--color-hunter-green);
+}
+
+/* Stats Bar */
+.statsBar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--ink-black);
+    color: var(--paper-bg);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.statNumber {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.statLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+.winColor {
+    color: #4ade80;
+}
+
+.lossColor {
+    color: #f87171;
+}
+
+/* Results */
+.resultsTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--color-moss-dark);
+}
+
+.matchesList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Match Card */
+.matchCard {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: 4px solid #ccc;
+    transition: all 0.2s;
+}
+
+.matchCard.win {
+    border-left-color: #22c55e;
+}
+
+.matchCard.loss {
+    border-left-color: #ef4444;
+}
+
+.matchCard.draw {
+    border-left-color: #eab308;
+}
+
+.matchCard:hover {
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.matchMain {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.matchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.matchMeta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.yearBadge {
+    background: var(--ink-black);
+    color: var(--paper-bg);
+    padding: 0.15rem 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.instanciaBadge {
+    font-size: 0.75rem;
+    color: var(--color-deep-green);
+    font-weight: 500;
+}
+
+
+.condicion {
+    display: block;
+    font-size: 0.7rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.scoreNumber {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ink-black);
+    min-width: 80px;
+    text-align: center;
+}
+
+.scorersRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.scorersSide {
+    flex: 1;
+    font-size: 0.8rem;
+    color: var(--color-deep-green);
+}
+
+.scorersSide:first-child {
+    text-align: right;
+}
+
+.scorersSide:last-child {
+    text-align: left;
+}
+
+.noPlayers {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-style: italic;
+    margin: 0.25rem 0;
+}
+
+.matchInfo {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: #888;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.matchInfo span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.expandIcon {
+    margin-left: auto;
+    transition: transform 0.2s;
+    color: #bbb;
+}
+
+.expanded {
+    transform: rotate(180deg);
+}
+
+/* Expanded Match Details */
+.matchExpanded {
+    border-top: 1px solid #eee;
+    padding: 1.25rem;
+    background: #fafaf8;
+}
+
+.expandedGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.lineupCol h4 {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+    color: var(--ink-black);
+}
+
+.dtName {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.lineupCol h5 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-deep-green);
+    margin: 0.5rem 0 0.25rem;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.lineupCol ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lineupCol li {
+    font-size: 0.85rem;
+    padding: 0.1rem 0;
+    color: #444;
+}
+
+.expandedFooter {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+    color: #888;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #ddd;
+    flex-wrap: wrap;
+}
+
+.expandedFooter span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.noResults {
+    text-align: center;
+    padding: 3rem;
+    color: #777;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .matchScore {
+        gap: 0.75rem;
+    }
+
+    .scoreNumber {
+        font-size: 1.4rem;
+        min-width: 60px;
+    }
+
+    .teamName {
+        font-size: 0.9rem;
+    }
+
+    .statsBar {
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .statNumber {
+        font-size: 1.2rem;
+    }
+
+    .expandedGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .filterRow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.goalsTitle {
+    display: block;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.2rem;
+}
+
+.scorerItem {
+    display: block;
+    line-height: 1.25;
+}
+
+.matchScore {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.teamHome,
+.teamAway {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.teamScorers {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--color-deep-green);
+}
+
+.teamName {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink-black);
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}

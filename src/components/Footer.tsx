@@ -14,7 +14,7 @@ export default function Footer() {
                     <ul>
                         <li><Link href="/">Inicio</Link></li>
                         <li><Link href="/historia/2023">Historia</Link></li>
-                        <li><Link href="/buscador">Buscador</Link></li>
+                        <li><Link href="/archivo">Archivo</Link></li>
                     </ul>
                 </div>
                 <div className={styles.column}>

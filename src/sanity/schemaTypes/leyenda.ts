@@ -51,6 +51,14 @@ export const leyenda = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'aniosPresidencia',
+            title: 'Años de Presidencia',
+            type: 'string',
+            description: 'Ej: "1994 - 1998"',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hidden: ({ document }: any) => !document?.roles?.includes('Dirigente'),
+        }),
+        defineField({
             name: 'partidos',
             title: 'Partidos Jugados',
             type: 'number',

@@ -68,19 +68,7 @@ export default async function Home() {
           <div className={styles.grid}>
             {otrasNotas.map((nota) => (
               <div key={nota._id} className={styles.card}>
-                {(() => {
-                  const img = nota.imagenPortada || nota.imagen;
-                  return img && (
-                    <div className={styles.cardImageContainer}>
-                      <Image
-                        src={urlFor(img).width(400).height(300).url()}
-                        alt={nota.titulo}
-                        fill
-                        className={styles.cardImage}
-                      />
-                    </div>
-                  );
-                })()}
+
                 <h3 className={styles.cardTitle}>{nota.titulo}</h3>
                 <p className={`${styles.cardText} ${styles.cardExcerpt}`}>
                   {nota.bajada}
@@ -137,7 +125,7 @@ export default async function Home() {
           <p className={styles.cardText}>
             Base de datos completa de rivales, árbitros y canchas. Busque información específica en nuestros registros.
           </p>
-          <Link href="/buscador" className={styles.readMore}>
+          <Link href="/archivo" className={styles.readMore}>
             CONSULTAR ARCHIVO &rarr;
           </Link>
         </div>

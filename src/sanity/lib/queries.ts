@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 export const NOTAS_QUERY = defineQuery(`
-  *[_type == "nota"] | order(_createdAt desc) {
+  *[_type == "nota"] | order(fecha desc, _createdAt desc) {
     _id,
     titulo,
     slug,
@@ -67,7 +67,7 @@ export const LEYENDAS_QUERY = defineQuery(`
     roles,
     rol,
     periodo,
-    periodo,
+    aniosPresidencia,
     partidos,
     goles,
     partidosDirigidos,
@@ -113,6 +113,7 @@ export const LEYENDA_BY_SLUG_QUERY = defineQuery(`
     roles,
     rol,
     periodo,
+    aniosPresidencia,
     partidos,
     goles,
     partidosDirigidos,

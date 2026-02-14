@@ -88,6 +88,7 @@ export interface Leyenda {
     roles?: string[];
     rol: string; // kept as position/title
     periodo: string;
+    aniosPresidencia?: string;
     partidos?: number;
     goles?: number;
     partidosDirigidos?: number;

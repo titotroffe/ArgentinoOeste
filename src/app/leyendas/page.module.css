@@ -110,6 +110,8 @@
     font-family: var(--font-body);
     font-size: 0.85rem;
     margin-top: auto;
+    height: 5.5rem;
+    align-items: center;
     /* Pushes stats to the bottom */
 }
 

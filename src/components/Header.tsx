@@ -42,7 +42,7 @@ export default function Header() {
                 <div className={styles.navContainer}>
                     <Link href="/" className={styles.navLink}>Portada</Link>
                     <Link href="/hemeroteca" className={styles.navLink}>Hemeroteca</Link>
-                    <Link href="/buscador" className={styles.navLink}>Archivo</Link>
+                    <Link href="/archivo" className={styles.navLink}>Archivo</Link>
                     <Link href="/leyendas" className={styles.navLink}>Leyendas</Link>
                     <Link href="/palmares" className={styles.navLink}>Palmarés</Link>
                     <Link href="/asociate" className={`${styles.navLink} ${styles.highlightLink || ''}`} style={{ color: 'var(--club-green)', fontWeight: 'bold' }}>Hacete Socio</Link>
@@ -75,7 +75,7 @@ export default function Header() {
                     <nav className={styles.mobileNav}>
                         <Link href="/" className={styles.mobileNavLink} onClick={toggleMenu}>Portada</Link>
                         <Link href="/hemeroteca" className={styles.mobileNavLink} onClick={toggleMenu}>Hemeroteca</Link>
-                        <Link href="/buscador" className={styles.mobileNavLink} onClick={toggleMenu}>Archivo</Link>
+                        <Link href="/archivo" className={styles.mobileNavLink} onClick={toggleMenu}>Archivo</Link>
                         <Link href="/leyendas" className={styles.mobileNavLink} onClick={toggleMenu}>Leyendas</Link>
                         <Link href="/palmares" className={styles.mobileNavLink} onClick={toggleMenu}>Palmarés</Link>
                         <Link href="/asociate" className={styles.mobileNavLink} onClick={toggleMenu} style={{ color: 'var(--club-green)', fontWeight: 'bold' }}>Hacete Socio</Link>

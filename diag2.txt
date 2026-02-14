@@ -1,0 +1,19 @@
+Sin cancha: 1
+Sin arbitro: 4
+Sin DT: 11
+
+=== 2024 Apertura ===
+Argentino Oeste 1-2 12 de Octubre | C:"12 de Octubre" A:"Santiago Mereles" DT:"Cesar Cecchi"
+Belgrano 3-0 Argentino Oeste | C:"Belgrano" A:"Rodrigo Barra" DT:"Cesar Cecchi"
+Argentino Oeste 2-0 El Fortin | C:"12 de Octubre" A:"Fabricio Estevano" DT:"Cesar Cecchi"
+Conesa 0-0 Argentino Oeste | C:"Conesa" A:"Santiago Mereles" DT:"Cesar Cecchi"
+Argentino Oeste 1-1 Regatas | C:"12 de Octubre" A:"Ivan Scarinzi" DT:"Cesar Cecchi"
+Matienzo 0-0 Argentino Oeste | C:"Matienzo" A:"Eduardo Perez" DT:"Cesar Cecchi"
+Argentino Oeste 0-5 Los Andes | C:"12 de Octubre" A:"Santiago Mereles" DT:"Cesar Cecchi"
+Argentino Oeste 0-1 Parana | C:"12 de Octubre" A:"Amarilla" DT:"Cesar Cecchi"
+Futbol San Nicolas 0-1 Argentino Oeste | C:"Futbol San Nicolas" A:"German Volker" DT:"Cesar Cecchi"
+Argentino Oeste 2-2 La Emilia | C:"12 de Octubre" A:"Diego Aguirre" DT:"Cesar Cecchi"
+General Rojo 1-1 Argentino Oeste | C:"General Rojo" A:"Sebastian Sena" DT:"Cesar Cecchi"
+Argentino Oeste 1-3 Somisa | C:"12 de Octubre" A:"Eduardo Perez" DT:"Cesar Cecchi"
+Social 3-1 Argentino Oeste | C:"Social" A:"German Volker" DT:"Cesar Cecchi"
+Argentino Oeste 2-2 Defensores de B. | C:"12 de Octubre" A:"Estevano" DT:"Cesar Cecchi"

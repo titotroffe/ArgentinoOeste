@@ -48,7 +48,7 @@ export default async function LeyendasPage() {
                             <p className={styles.bio}>{leyenda.bio}</p>
                             <div className={styles.stats}>
                                 {/* Player Stats - Show if role includes Jugador OR if no DT role (fallback for old data) */}
-                                {(leyenda.roles?.includes('Jugador') || (!leyenda.roles?.includes('DT') && !leyenda.rol?.includes('Técnico') && !leyenda.rol?.includes('DT'))) && (
+                                {(leyenda.roles?.includes('Jugador') || (!leyenda.roles?.includes('DT') && !leyenda.roles?.includes('Dirigente') && !leyenda.rol?.includes('Técnico') && !leyenda.rol?.includes('DT') && !leyenda.rol?.includes('Dirigente'))) && (
                                     <>
                                         {leyenda.partidos !== undefined && (
                                             <div className={styles.statItem}>
@@ -92,6 +92,13 @@ export default async function LeyendasPage() {
                                             </div>
                                         )}
                                     </>
+                                )}
+                                {/* Presidency Years */}
+                                {leyenda.aniosPresidencia && (
+                                    <div className={styles.statItem} style={{ width: '100%' }}>
+                                        <span className={styles.statValue}>{leyenda.aniosPresidencia}</span>
+                                        <span className={styles.statValue} style={{ textTransform: 'uppercase' }}>{leyenda.rol}</span>
+                                    </div>
                                 )}
                             </div>
                         </div>
