@@ -16,6 +16,11 @@ export const player = defineType({
             type: 'number',
         }),
         defineField({
+            name: 'golesEnContra',
+            title: 'Goles en Contra',
+            type: 'number',
+        }),
+        defineField({
             name: 'rojas',
             title: 'Tarjeta Roja',
             type: 'boolean',

@@ -85,6 +85,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
                                             <span>{p.nombre}</span>
                                             <div>
                                                 {p.goles && <span className={sintesisStyles.goalMark}>(G) {p.goles > 1 ? `x${p.goles}` : ''}</span>}
+                                                {p.golesEnContra && <span className={sintesisStyles.goalMark} style={{ color: '#d32f2f' }}>(E.C) {p.golesEnContra > 1 ? `x${p.golesEnContra}` : ''}</span>}
                                             </div>
                                         </li>
                                     ))}
@@ -97,6 +98,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
                                             <span>{p.nombre}</span>
                                             <div>
                                                 {p.goles && <span className={sintesisStyles.goalMark}>(G) {p.goles > 1 ? `x${p.goles}` : ''}</span>}
+                                                {p.golesEnContra && <span className={sintesisStyles.goalMark} style={{ color: '#d32f2f' }}>(E.C) {p.golesEnContra > 1 ? `x${p.golesEnContra}` : ''}</span>}
                                             </div>
                                         </li>
                                     ))}
@@ -115,6 +117,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
                                             <span>{p.nombre}</span>
                                             <div>
                                                 {p.goles && <span className={sintesisStyles.goalMark}>(G) {p.goles > 1 ? `x${p.goles}` : ''}</span>}
+                                                {p.golesEnContra && <span className={sintesisStyles.goalMark} style={{ color: '#d32f2f' }}>(E.C) {p.golesEnContra > 1 ? `x${p.golesEnContra}` : ''}</span>}
                                             </div>
                                         </li>
                                     ))}
@@ -127,6 +130,7 @@ export default async function NotaPage(props: { params: Promise<{ id: string }> 
                                             <span>{p.nombre}</span>
                                             <div>
                                                 {p.goles && <span className={sintesisStyles.goalMark}>(G) {p.goles > 1 ? `x${p.goles}` : ''}</span>}
+                                                {p.golesEnContra && <span className={sintesisStyles.goalMark} style={{ color: '#d32f2f' }}>(E.C) {p.golesEnContra > 1 ? `x${p.golesEnContra}` : ''}</span>}
                                             </div>
                                         </li>
                                     ))}

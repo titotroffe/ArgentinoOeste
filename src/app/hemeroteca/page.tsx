@@ -27,13 +27,13 @@ export default async function HemerotecaPage(props: { searchParams: Promise<{ pa
                 {currentNotes.map((nota) => (
                     <article key={nota._id} className={styles.card}>
                         <span className={styles.cardCategory}>{nota.categoria || 'Archivo'}</span>
-                        <Link href={`/nota/${nota._id}`}>
+                        <Link href={`/nota/${nota.slug?.current}`}>
                             <h2 className={styles.cardTitle}>{nota.titulo}</h2>
                         </Link>
                         <p className={styles.cardExcerpt}>{nota.bajada}</p>
                         <div className={styles.cardFooter}>
                             <span className={styles.date}>{nota.fecha}</span>
-                            <Link href={`/nota/${nota._id}`} className={styles.readMore}>
+                            <Link href={`/nota/${nota.slug?.current}`} className={styles.readMore}>
                                 Leer Nota
                             </Link>
                         </div>

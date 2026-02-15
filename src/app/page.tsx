@@ -66,7 +66,7 @@ export default async function Home() {
             Últimas Noticias
           </h2>
           <div className={styles.grid}>
-            {otrasNotas.map((nota) => (
+            {otrasNotas.slice(0, 3).map((nota) => (
               <div key={nota._id} className={styles.card}>
 
                 <h3 className={styles.cardTitle}>{nota.titulo}</h3>

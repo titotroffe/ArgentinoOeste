@@ -52,14 +52,14 @@ export interface Nota {
     detallesPartido?: {
         local: {
             nombre: string;
-            titulares: { nombre: string; goles?: number; rojas?: boolean }[];
-            suplentes: { nombre: string; goles?: number; ingreso?: boolean }[];
+            titulares: { nombre: string; goles?: number; rojas?: boolean; golesEnContra?: number }[];
+            suplentes: { nombre: string; goles?: number; ingreso?: boolean; golesEnContra?: number }[];
             dt: string
         };
         visitante: {
             nombre: string;
-            titulares: { nombre: string; goles?: number; rojas?: boolean }[];
-            suplentes: { nombre: string; goles?: number; ingreso?: boolean }[];
+            titulares: { nombre: string; goles?: number; rojas?: boolean; golesEnContra?: number }[];
+            suplentes: { nombre: string; goles?: number; ingreso?: boolean; golesEnContra?: number }[];
             dt: string
         };
         arbitro: string;
