@@ -19,7 +19,7 @@ export default function Footer() {
                 </div>
                 <div className={styles.column}>
                     <h4>Contacto</h4>
-                    <p>info@argentinooeste.com</p>
+                    <p>info@argentinooeste.com.ar</p>
                     <p>San Nicolás, Buenos Aires</p>
                 </div>
             </div>
