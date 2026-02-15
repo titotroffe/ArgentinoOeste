@@ -100,6 +100,7 @@
 .pagination {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 2rem;
@@ -138,6 +139,10 @@
     }
 }
 
+.mobileText {
+    display: none;
+}
+
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: 1fr;
@@ -145,5 +150,22 @@
 
     .title {
         font-size: 3rem;
+    }
+
+    .pagination {
+        gap: 0.5rem;
+    }
+
+    .pageLink {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .desktopText {
+        display: none;
+    }
+
+    .mobileText {
+        display: inline;
     }
 }

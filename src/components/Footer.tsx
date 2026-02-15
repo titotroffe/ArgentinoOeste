@@ -24,7 +24,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className={styles.copyright}>
-                <p>&copy; {new Date().getFullYear()} Club Argentino Oeste. Todos los derechos reservados.</p>
+                <p>&copy; {new Date().getFullYear()} Club Atletico Argentino Oeste. Todos los derechos reservados.</p>
             </div>
         </footer>
     );

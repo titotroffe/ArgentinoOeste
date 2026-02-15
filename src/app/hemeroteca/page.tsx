@@ -46,10 +46,14 @@ export default async function HemerotecaPage(props: { searchParams: Promise<{ pa
                 {/* Botón Anterior */}
                 {currentPage > 1 ? (
                     <Link href={`/hemeroteca?page=${currentPage - 1}`} className={styles.pageLink}>
-                        &larr; Anterior
+                        <span className={styles.desktopText}>&larr; Anterior</span>
+                        <span className={styles.mobileText}>&lt;</span>
                     </Link>
                 ) : (
-                    <span className={`${styles.pageLink} ${styles.disabledPage}`}>&larr; Anterior</span>
+                    <span className={`${styles.pageLink} ${styles.disabledPage}`}>
+                        <span className={styles.desktopText}>&larr; Anterior</span>
+                        <span className={styles.mobileText}>&lt;</span>
+                    </span>
                 )}
 
                 {/* Números de página */}
@@ -66,10 +70,14 @@ export default async function HemerotecaPage(props: { searchParams: Promise<{ pa
                 {/* Botón Siguiente */}
                 {currentPage < totalPages ? (
                     <Link href={`/hemeroteca?page=${currentPage + 1}`} className={styles.pageLink}>
-                        Siguiente &rarr;
+                        <span className={styles.desktopText}>Siguiente &rarr;</span>
+                        <span className={styles.mobileText}>&gt;</span>
                     </Link>
                 ) : (
-                    <span className={`${styles.pageLink} ${styles.disabledPage}`}>Siguiente &rarr;</span>
+                    <span className={`${styles.pageLink} ${styles.disabledPage}`}>
+                        <span className={styles.desktopText}>Siguiente &rarr;</span>
+                        <span className={styles.mobileText}>&gt;</span>
+                    </span>
                 )}
             </div>
         </div>
