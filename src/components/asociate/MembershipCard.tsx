@@ -1,8 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import Image from 'next/image';
 import styles from '../../app/asociate/asociate.module.css';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { VintageCardPdf } from './VintageCardPdf';
 const sello = '/img/sello.png';
 
 interface MembershipCardProps {
@@ -10,7 +13,54 @@ interface MembershipCardProps {
     photoUrl: string | null;
 }
 
-export default function MembershipCard({ name, photoUrl }: MembershipCardProps) {
+export interface MembershipCardHandle {
+    downloadPdf: () => Promise<void>;
+}
+
+const MembershipCard = forwardRef<MembershipCardHandle, MembershipCardProps>(({ name, photoUrl }, ref) => {
+    const pdfRef = useRef<HTMLDivElement>(null);
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    useImperativeHandle(ref, () => ({
+        downloadPdf: handleDownloadPdf
+    }));
+
+    const handleDownloadPdf = async () => {
+        if (!pdfRef.current) return;
+        setIsGenerating(true);
+
+        try {
+            // Wait a bit for images to load if needed (though next/image might be tricky with html2canvas)
+            // html2canvas config
+            const canvas = await html2canvas(pdfRef.current, {
+                scale: 4, // Higher scale for better quality
+                useCORS: true, // Important for external images if any
+                backgroundColor: '#f4e4bc', // Match card background
+                logging: false
+            });
+
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+            // ID Card Dimensions: 85.6mm x 54mm (CR-80 standard)
+            const pdf = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: [92, 64] // Updated to match sleeve dimensions
+            });
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, 92, 64);
+
+            const fileName = `carnet-socio-${name.replace(/\s+/g, '-').toLowerCase() || 'club'}.pdf`;
+            pdf.save(fileName);
+
+        } catch (error) {
+            console.error('Error rendering PDF:', error);
+            alert('Hubo un error al generar el PDF. Por favor intenta nuevamente.');
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
     return (
         <div className={styles.cardPreview}>
             <div className={styles.bookWrapper}>
@@ -68,7 +118,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                     transform: 'rotate(0deg)',
                                     marginBottom: '-5px'
                                 }}>
-                                    Perez
+                                    Ebes
                                 </div>
                                 <div style={{
                                     borderTop: '1px solid #333',
@@ -91,7 +141,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                     transform: 'rotate(0deg)',
                                     marginBottom: '-5px'
                                 }}>
-                                    Garcia
+                                    Mengarelli
                                 </div>
                                 <div style={{
                                     borderTop: '1px solid #333',
@@ -214,7 +264,7 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                                         marginBottom: '0px',
                                         display: 'inline-block'
                                     }}>
-                                        Reynoso
+                                        Velocci
                                     </div>
                                     <div style={{
                                         borderTop: '1px solid #333',
@@ -237,6 +287,19 @@ export default function MembershipCard({ name, photoUrl }: MembershipCardProps) 
                 </div>
 
             </div>
+
+
+
+            {/* Hidden Container for PDF Generation */}
+            <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+                <div ref={pdfRef}>
+                    <VintageCardPdf name={name} photoUrl={photoUrl} />
+                </div>
+            </div>
         </div>
     );
-}
+});
+
+MembershipCard.displayName = 'MembershipCard';
+
+export default MembershipCard;

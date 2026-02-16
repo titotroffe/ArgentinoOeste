@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import MembershipCard from '@/components/asociate/MembershipCard';
+import { useState, useRef } from 'react';
+import MembershipCard, { MembershipCardHandle } from '@/components/asociate/MembershipCard';
 import Button from '@/components/ui/Button';
 import styles from './asociate.module.css';
 
 export default function AsociatePage() {
+    const cardRef = useRef<MembershipCardHandle>(null);
     const [formData, setFormData] = useState({
         name: '',
     });
@@ -30,10 +31,12 @@ export default function AsociatePage() {
         }
     };
 
-    const handleDownload = () => {
-        // Basic placeholder for download logic
-        // In a real app, you might use html2canvas or similar
-        alert('Función de descarga próximamente disponible. Por ahora podés hacer una captura de pantalla!');
+    const handleDownload = async () => {
+        if (cardRef.current) {
+            await cardRef.current.downloadPdf();
+        } else {
+            console.error("No se pudo acceder a la función de descarga del carnet.");
+        }
     };
 
     return (
@@ -92,6 +95,7 @@ export default function AsociatePage() {
                 <div>
                     <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '1.5rem', fontSize: '1.5rem', textAlign: 'center' }}>Tu Carnet Virtual</h2>
                     <MembershipCard
+                        ref={cardRef}
                         name={formData.name}
                         photoUrl={photoUrl}
                     />

@@ -1,0 +1,352 @@
+/* The Plastic Sleeve Container */
+.sleeveWrapper {
+    width: 92mm;
+    /* Larger than card (85.6mm) */
+    height: 64mm;
+    /* Larger than card (58mm) */
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight tint */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Outer edge */
+    border-radius: 5mm;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Simulated heat seal border */
+    box-shadow:
+        inset 0 0 0 2mm rgba(255, 255, 255, 0.15),
+        /* Seal area */
+        0 5px 15px rgba(0, 0, 0, 0.2);
+    /* Drop shadow of the sleeve itself */
+}
+
+/* Reflections on the Sleeve */
+.sleeveWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.05) 30%,
+            rgba(255, 255, 255, 0.4) 45%,
+            rgba(255, 255, 255, 0.0) 50%,
+            rgba(255, 255, 255, 0.2) 60%,
+            rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Scratches / imperfection overlay on the sleeve */
+.sleeveWrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(115deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.1) 20px,
+            rgba(255, 255, 255, 0.1) 22px),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    z-index: 99;
+    pointer-events: none;
+}
+
+.pdfContainer {
+    width: 85.6mm;
+    height: 58mm;
+    /* Slightly taller carnet */
+    background-color: #dfd3bd;
+    /* Better vintage paper tone */
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    /* Default to sans-serif for labels */
+    overflow: hidden;
+    color: #000;
+    /* Set all to pure black */
+    padding: 6mm 2mm 2mm 2mm;
+    box-sizing: border-box;
+    border-radius: 3mm;
+    /* Slightly smaller radius inside sleeve */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    /* Slight shadow inside sleeve */
+    /* Grunge texture overlay */
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 20%),
+        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* Watermark/Logo Background - Big Star */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+    filter: grayscale(100%) contrast(1.2);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2mm;
+    /* Reverted global shift */
+    position: relative;
+    z-index: 1;
+    line-height: 0.9;
+}
+
+.titleTop {
+    font-size: 16pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 1.2pt;
+    display: block;
+    margin-bottom: 1.5mm;
+    /* Added separation */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titleMain {
+    font-size: 16pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 1.2pt;
+    display: block;
+    margin-bottom: 1mm;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.subTitle {
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 0.3pt;
+    word-spacing: 0.8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+}
+
+.contentRow {
+    display: flex;
+    gap: 2mm;
+    height: 40mm;
+    /* Increased to allow for taller photo */
+    position: relative;
+    z-index: 1;
+    padding-top: 4mm;
+    /* Reverted global shift */
+}
+
+.leftCol {
+    width: 25mm;
+    /* Reduced to move personal data left */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 3mm;
+    /* Reduced to move photo left */
+    padding-top: 0mm;
+    /* Removed to move photo up */
+}
+
+.photoFrame {
+    width: 24mm;
+    height: 26mm;
+    /* Back to taller rectangular portrait */
+    border: 0.6mm solid #000000;
+    /* Keeping your black border */
+    padding: 0.5mm;
+    background: transparent;
+    margin-top: -1.8mm;
+
+    /* Specific vertical shift for ONLY the photo frame */
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.4) contrast(1.1) grayscale(0.2);
+}
+
+.rightCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0;
+    padding-left: 2mm;
+    /* Reduced to move personal data left */
+}
+
+.fieldRow {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 3.5mm;
+    /* More space between lines */
+    position: relative;
+}
+
+.label {
+    font-size: 7.5pt;
+    font-weight: bold;
+    margin-right: -4mm;
+    white-space: nowrap;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 17mm;
+    /* Fixed width for labels to align dots start */
+    display: inline-block;
+}
+
+/* Typewriter leader effect */
+.dots {
+    width: 38mm;
+    /* Fixed width for all lines */
+    border-bottom: 1.2px dotted #000;
+    position: relative;
+    top: 0mm;
+    /* Lowered per user request */
+    margin-left: 0mm;
+}
+
+.value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11pt;
+    /* Further reduced per user request */
+    font-weight: 900;
+    color: #000;
+    position: absolute;
+    left: 20mm;
+    bottom: 0mm;
+    /* Lowered per user request (was 1mm) */
+    white-space: nowrap;
+    z-index: 2;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    /* Authentic typewriter style */
+    text-shadow: 0.3px 0.3px 0px rgba(0, 0, 0, 0.2);
+    /* Subtle ink bleed */
+}
+
+/* Carnet Number Special Styling */
+.carnetRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2mm;
+    margin-left: 0;
+}
+
+.carnetLabel {
+    font-size: 8pt;
+    font-weight: bold;
+    margin-right: 3mm;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    width: 17mm;
+    /* Consistent with other labels */
+    display: inline-block;
+}
+
+.carnetValue {
+    font-size: 14pt;
+    /* Further reduced per user request */
+    font-weight: 900;
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    transform: rotate(-1deg);
+    display: inline-block;
+    position: absolute;
+    left: 20mm;
+    bottom: 0mm;
+    /* Lowered per user request */
+    text-shadow: 0.3px 0.3px 0.1px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.signatureBox {
+    text-align: center;
+    width: 20mm;
+    /* Reduced to create a gap between lines */
+    position: relative;
+}
+
+.signature {
+    font-family: var(--font-script), 'Pinyon Script', cursive;
+    font-size: 15pt;
+    /* Adjusted size for the new font */
+    color: #000080;
+    position: absolute;
+    bottom: 1mm;
+    left: -2mm;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.stamp {
+    position: absolute;
+    top: 29%;
+    /* Lower than 18% */
+    left: 40%;
+    /* Moved further to the right */
+    transform: translate(-50%, -50%) rotate(-5deg);
+    /* Rotated more to the right (clockwise) */
+    width: 38mm;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 10;
+    /* Bring to front of photo */
+    filter: sepia(1) saturate(1.5) hue-rotate(90deg);
+}
+
+.signatures {
+    position: absolute;
+    bottom: 2mm;
+    left: 35mm;
+    /* Adjusted left slightly */
+    width: 45mm;
+    /* Reduced from 50mm to bring signatures closer */
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.signatureLabel {
+    border-top: 1.2px dotted #000;
+    /* Dotted line as requested */
+    /* Solid line like image */
+    font-size: 5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-top: 0.5mm;
+    color: #333;
+    margin-top: 10mm;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Specific adjustment for Ezquerra (First Signature) */
+.signatureBox:first-child .signature {
+    left: 0mm;
+    /* Moved right per user request */
+}
