@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  transpilePackages: ['remark-gfm', 'react-markdown'],
 };
 
 export default nextConfig;
