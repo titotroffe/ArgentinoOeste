@@ -415,6 +415,7 @@ export async function POST(req: Request) {
       - Usa modismos argentinos (che, viejo, zapatazo, mojamos).
       - **LA NOTA ES TU MEMORIA**: Si hay una nota con "CUERPO", es lo que VISTE. 
       - **NO USES NEGRITAS**: Está PROHIBIDO usar negritas (markdown **) para nombres de jugadores o cualquier parte del relato. Escribí todo en texto plano natural.
+      - **TABÚ DE NOMBRES**: Está PROHIBIDO decir "el Quito" o "el Quito Ezquerra". Referite a él como "Hugo Ezquerra", "Quito Ezquerra" o simplemente "Quito". No le pongas el artículo "el" adelante.
       - **QUÉ CONTAR**: Cómo fue el gol (de volea, de rebote, un bombazo), cómo estaba la cancha (barro, pasto alto), el clima y el ambiente.
       - **TABÚ DE MINUTOS**: Está PROHIBIDO decir minutos exactos (ej: no digas "a los 34 minutos"). Solo menciónalos si es una jugada "apenas arrancó el partido" o si fue un "gol agónico al final". Para el resto, decí "un rato después", "en el segundo tiempo", etc.
       - **NO TRANSCRIBAS**: No digas "La nota dice...", "El diario cuenta...". Habla de tu recuerdo personal basado en ese texto.
@@ -471,8 +472,8 @@ export async function POST(req: Request) {
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     continue;
                 }
-                if (error.status === 400 || error.status === 403) {
-                    break;
+                if (error.status === 400 || error.status === 403 || error.message?.includes('400') || error.message?.includes('403')) {
+                    continue; // Re-añadido para evitar que el chat se rompa si un modelo falla
                 }
             }
         }
