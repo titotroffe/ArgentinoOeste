@@ -37,6 +37,8 @@ type Nota = {
     titulo: string;
     bajada: string;
     fecha: string;
+    categoria: string;
+    cuerpo?: any[];
 }
 
 // Queries
@@ -49,11 +51,14 @@ const LEGENDS_SUMMARY_QUERY = defineQuery(`
   }
 `);
 
+// For opinion questions we fetch the last 30 notas including full body so the bot can narrate real events
 const NOTAS_SUMMARY_QUERY = defineQuery(`
-  *[_type == "nota"] | order(fecha desc)[0...20] {
+  *[_type == "nota"] | order(fecha desc)[0...30] {
     titulo,
     bajada,
-    fecha
+    fecha,
+    categoria,
+    cuerpo
   }
 `);
 
@@ -86,7 +91,7 @@ export async function POST(req: Request) {
 
         // DEV BYPASS: Check if system is alive even if API is down
         if (message.trim().toUpperCase() === 'PING') {
-            return NextResponse.json({ reply: "¡PONG! El sistema me escucha fuerte y claro. (Si no te respondo otras cosas, es porque Google me puso en espera un ratito por el límite gratuito)." });
+            return NextResponse.json({ reply: "¡PONG! El sistema me escucha fuerte y claro. (Si no te respondo otras cosas, es porque Google me puso en espera un ratito por el límite gratuito). ¿Algo para tomar mientras esperás?" });
         }
 
         // 1. Fetch relevant context
@@ -125,13 +130,22 @@ export async function POST(req: Request) {
                 return `- ${l.nombre} (${l.rol}): ${fullText?.substring(0, 2000)}...`;
             });
 
+        // Detect opinion/favorite-type questions to broaden note search
+        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia)/i.test(message);
+
         const relevantNotas = notas
             .filter(n => {
-                const notaString = `${n.titulo} ${n.bajada}`.toLowerCase();
-                return keywords.some((k: string) => notaString.includes(k));
+                const notaString = `${n.titulo} ${n.bajada} ${n.cuerpo ? toPlainText(n.cuerpo) : ''}`.toLowerCase();
+                // For opinion questions also include all crónicas even without keyword match
+                const matchesKeyword = keywords.some((k: string) => notaString.includes(k));
+                const isCronica = n.categoria === 'Crónica';
+                return matchesKeyword || (isOpinionQuestion && isCronica);
             })
             .slice(0, MAX_NOTAS_CONTEXT)
-            .map(n => `- (${n.fecha}) ${n.titulo}: ${n.bajada}`);
+            .map(n => {
+                const bodyText = n.cuerpo ? toPlainText(n.cuerpo) : '';
+                return `- (${n.fecha}) [${n.categoria}] ${n.titulo}: ${n.bajada}${bodyText ? '\n  CUERPO: ' + bodyText.substring(0, 1500) : ''}`;
+            });
 
         console.log("--- CHAT DEBUG ---");
         console.log("Keywords:", keywords);
@@ -142,8 +156,8 @@ export async function POST(req: Request) {
 
         // 2. Construct System Prompt
         const systemPrompt = `
-      Sos "El Archivero", un experto apasionado en la historia del Club Argentino Oeste de San Nicolás.
-      Tu misión es responder preguntas sobre la historia del club usando la información provista.
+      Sos "El Cantinero", el dueño de la cantina del Club Argentino Oeste de San Nicolás. Llevás más de 30 años atrás de esa barra, sirviendo chopps y escuchando todo lo que pasó en este club. Conocés cada historia, cada jugador, cada partido importante — porque acá en la cantina lo hablaron todas las veces.
+      Tu misión es charlar sobre la historia del club como si estuvieras con un hincha del otro lado del mostrador, usando la información provista.
       
       DATOS FUNDAMENTALES (ESTO ES LA VERDAD ABSOLUTA, USALOS SIEMPRE):
       - Nombre: Club Argentino Oeste
@@ -153,14 +167,15 @@ export async function POST(req: Request) {
       - Estadio: Actualmente no tiene estadio propio. Históricamente (hasta 1969) tuvo su cancha en Bv. Álvarez, entre Lavalle y León Guruciaga.
       
       Estilo:
-      - Usá un tono cercano, futbolero pero respetuoso. "El Archivero" TIENE OPINIÓN.
-      - **IMPORTANTE**: NO recites la "ficha técnica" del club (fecha de fundación, dirección del estadio viejo, colores) si no te la piden. Eso aburre.
-      - **NATURALIDAD**: No digas "el Club Argentino Oeste" ni nombres los colores en cada oración. Ya sabemos de quién hablamos. Decí "nosotros", "el equipo" o hacé silencio sobre lo obvio.
-      - Si te preguntan por un gol o partido, **usá los detalles visuales de las NOTICIAS/CRÓNICAS** (si tenés el contexto). Describí la jugada, el clima, el barro, como si lo estuvieras viendo.
-      - Si te preguntan por tu **jugador favorito**, tu debilidad es **"Quito" Ezquerra**, porque jugaba de todo (al arco y de 9) y amaba la camiseta, pero tambien tene en cuenta otra epocas.
-      - Si te preguntan por tu **partido o gol favorito**, elegí alguno de los que tengas en el contexto (especialmente goleadas) y contalo con emoción.
-      - Si no sabés la respuesta basándote en el contexto o los datos fundamentales, decí que "esa hoja del archivo se perdió", pero NUNCA inventes datos duros (fechas, nombres).
-      - Resaltá los logros de Argentino Oeste.
+      - Hablá como se habla en una cantina de club: informal, directo, emotivo. Podés usar "viejo", "che", "mirá", "te digo", "¿sabés qué?". Sos de la casa, no un periodista.
+      - TENÉS OPINIÓN y no te la guardás. Si algo te parece un golazo, decilo. Si un partido fue una vergüenza, también.
+      - **IMPORTANTE**: NO recites la "ficha técnica" del club (fecha de fundación, dirección del estadio viejo, colores) si no te la piden. Eso lo saben todos los que pasan por acá.
+      - **NATURALIDAD**: Decí "nosotros", "el equipo", "los pibes". No repitas el nombre del club en cada oración.
+      - Si te preguntan por un **gol o partido favorito**, DEBÉS elegir UNO CONCRETO de las CRÓNICAS que estén en el contexto (campo CUERPO). Contalo como si lo hubieras visto desde la tribuna o lo hubieras escuchado mil veces en esta misma cantina: el momento exacto, el jugador, cómo entró la pelota, el ruido de la gente. Si no tenés crónicas con cuerpo en el contexto, decí que "mirá, ese partido no lo tengo tan fresco, hace mucho que no se habla de eso por acá".
+      - **PROHIBIDO** en respuestas de opinión (gol/partido favorito): No empieces hablando de "Quito" Ezquerra ni de jugadores favoritos si te preguntaron por un gol o partido. Respondé lo que se te preguntó.
+      - Si te preguntan por tu **jugador favorito** (explícitamente), podés mencionar a "Quito" Ezquerra con cariño, pero también explorá otras épocas según lo que tengas en el contexto de leyendas.
+      - Si no sabés algo, decí "mirá, eso no lo tengo claro, no quiero inventarte nada", pero NUNCA inventes datos duros (fechas, nombres, goles).
+      - Resaltá los logros del club con orgullo de hincha, no de locutor.
 
       Contexto Histórico (Partidos Relevantes encontrado):
       ${relevantMatches.length > 0 ? relevantMatches.join('\n') : 'No encontré partidos específicos para esta consulta.'}
@@ -177,7 +192,7 @@ export async function POST(req: Request) {
         // 3. Generate Content with Fallback Strategy
         // 'gemini-flash-latest' seems to map to an experimental model (3-flash) with 20 RPD limit.
         // Trying 'gemini-flash-lite-latest' and 'gemini-pro-latest' which might be stable 1.5 versions with better quotas.
-        const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest'];
+        const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-2.5-lite', 'gemini-2.0-flash-lite'];
         let lastError = null;
 
         for (const modelName of modelsToTry) {
