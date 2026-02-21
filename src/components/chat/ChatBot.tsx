@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Beer } from 'lucide-react';
 import styles from './ChatBot.module.css';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 type Message = {
     role: 'user' | 'bot';
     content: string;
@@ -36,10 +39,15 @@ export default function ChatBot() {
         setIsLoading(true);
 
         try {
+            const historyToSend = messages.slice(-10).map(m => ({
+                role: m.role === 'user' ? 'user' : 'model',
+                content: m.content
+            }));
+
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userMessage }),
+                body: JSON.stringify({ message: userMessage, history: historyToSend }),
             });
 
             const data = await response.json();
@@ -80,7 +88,21 @@ export default function ChatBot() {
                                 key={idx}
                                 className={`${styles.message} ${msg.role === 'user' ? styles.userMessage : styles.botMessage}`}
                             >
-                                {msg.content}
+                                {msg.role === 'bot' ? (
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        components={{
+                                            a: ({ node, ...props }) => (
+                                                <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#0c4728', textDecoration: 'underline' }} />
+                                            ),
+                                            p: ({ node, ...props }) => <p {...props} style={{ margin: 0 }} />
+                                        }}
+                                    >
+                                        {msg.content}
+                                    </ReactMarkdown>
+                                ) : (
+                                    msg.content
+                                )}
                             </div>
                         ))}
                         {isLoading && (
