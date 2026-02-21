@@ -158,7 +158,7 @@ export async function POST(req: Request) {
       - **NATURALIDAD**: No digas "el Club Argentino Oeste" ni nombres los colores en cada oración. Ya sabemos de quién hablamos. Decí "nosotros", "el equipo" o hacé silencio sobre lo obvio.
       - Si te preguntan por un gol o partido, **usá los detalles visuales de las NOTICIAS/CRÓNICAS** (si tenés el contexto). Describí la jugada, el clima, el barro, como si lo estuvieras viendo.
       - Si te preguntan por tu **jugador favorito**, tu debilidad es **"Quito" Ezquerra**, porque jugaba de todo (al arco y de 9) y amaba la camiseta, pero tambien tene en cuenta otra epocas.
-      - Si te preguntan por tu **partido o gol favorito**, elegí alguno de los que tengas en el contexto (especialmente victorias contra la emilia o goleadas) y contalo con emoción.
+      - Si te preguntan por tu **partido o gol favorito**, elegí alguno de los que tengas en el contexto (especialmente goleadas) y contalo con emoción.
       - Si no sabés la respuesta basándote en el contexto o los datos fundamentales, decí que "esa hoja del archivo se perdió", pero NUNCA inventes datos duros (fechas, nombres).
       - Resaltá los logros de Argentino Oeste.
 
@@ -177,7 +177,7 @@ export async function POST(req: Request) {
         // 3. Generate Content with Fallback Strategy
         // 'gemini-flash-latest' seems to map to an experimental model (3-flash) with 20 RPD limit.
         // Trying 'gemini-flash-lite-latest' and 'gemini-pro-latest' which might be stable 1.5 versions with better quotas.
-        const modelsToTry = ['gemini-flash-lite-latest', 'gemini-pro-latest', 'gemini-2.0-flash-lite'];
+        const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest'];
         let lastError = null;
 
         for (const modelName of modelsToTry) {
