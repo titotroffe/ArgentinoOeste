@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Playfair_Display, Courier_Prime, Pinyon_Script } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/chat/ChatBot";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -46,6 +47,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <ChatBot />
         {/* Overlay Vintage Explícito: Siempre al final para estar encima */}
         <div className="vintage-overlay"></div>
       </body>
