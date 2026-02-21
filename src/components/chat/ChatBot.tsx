@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, History } from 'lucide-react';
+import { MessageCircle, X, Send, Beer } from 'lucide-react';
 import styles from './ChatBot.module.css';
 
 type Message = {
@@ -12,7 +12,7 @@ type Message = {
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'bot', content: '¡Hola! Soy "El Archivero". Preguntame lo que quieras sobre la historia de Argentino Oeste.' }
+        { role: 'bot', content: '¡Bienvenido a la cantina! Pedite algo y charlamos. Preguntame lo que quieras sobre la historia del club.' }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -47,11 +47,11 @@ export default function ChatBot() {
             if (response.ok) {
                 setMessages(prev => [...prev, { role: 'bot', content: data.reply }]);
             } else {
-                setMessages(prev => [...prev, { role: 'bot', content: 'Perdón, se me mezclaron los papeles del archivo. ¿Podés preguntar de nuevo?' }]);
+                setMessages(prev => [...prev, { role: 'bot', content: 'Uy, se me cortó el hilo. ¿Me repetís la pregunta?' }]);
             }
         } catch (error) {
             console.error('Error:', error);
-            setMessages(prev => [...prev, { role: 'bot', content: 'Tuve un problema de conexión con el archivo. Intentá más tarde.' }]);
+            setMessages(prev => [...prev, { role: 'bot', content: 'Se me fue la luz de la cantina. Probá en un ratito.' }]);
         } finally {
             setIsLoading(false);
         }
@@ -63,8 +63,8 @@ export default function ChatBot() {
                 <div className={styles.chatWindow}>
                     <div className={styles.header}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <History size={20} />
-                            <h3>El Archivero</h3>
+                            <Beer size={20} />
+                            <h3>La Cantina del Club</h3>
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
@@ -84,7 +84,7 @@ export default function ChatBot() {
                             </div>
                         ))}
                         {isLoading && (
-                            <div className={styles.typing}>Buscando en los libros de actas...</div>
+                            <div className={styles.typing}>El cantinero está pensando...</div>
                         )}
                         <div ref={messagesEndRef} />
                     </div>
