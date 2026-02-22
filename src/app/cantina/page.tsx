@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Beer } from 'lucide-react';
-import styles from './ChatBot.module.css';
+import { Send } from 'lucide-react';
+import styles from './cantina.module.css';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -12,10 +12,9 @@ type Message = {
     content: string;
 };
 
-export default function ChatBot() {
-    const [isOpen, setIsOpen] = useState(false);
+export default function Cantina() {
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'bot', content: '¡Bienvenido a la cantina! Pedite algo y charlamos. Preguntame lo que quieras sobre la historia del club.' }
+        { role: 'bot', content: '¡Bienvenido a la cantina! Acercate a la barra, pedite algo y charlamos sobre lo que quieras de la historia del club.' }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +25,11 @@ export default function ChatBot() {
     };
 
     useEffect(() => {
-        scrollToBottom();
-    }, [messages, isOpen]);
+        // Only scroll if there's more than the initial system message
+        if (messages.length > 1) {
+            scrollToBottom();
+        }
+    }, [messages]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -66,22 +68,16 @@ export default function ChatBot() {
     };
 
     return (
-        <div className={styles.chatContainer}>
-            {isOpen && (
-                <div className={styles.chatWindow}>
-                    <div className={styles.header}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <Beer size={20} />
-                            <h3>La Cantina del Club</h3>
-                        </div>
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
-                        >
-                            <X size={20} />
-                        </button>
-                    </div>
+        <div className={styles.cantinaContainer}>
+            <div className={styles.overlay}></div>
 
+            <div className={styles.contentWrapper}>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>La Cantina del Club</h1>
+                    <p className={styles.subtitle}>Un lugar para recordar nuestra historia con una copa de por medio.</p>
+                </div>
+
+                <div className={styles.chatWindow}>
                     <div className={styles.messages}>
                         {messages.map((msg, idx) => (
                             <div
@@ -93,7 +89,7 @@ export default function ChatBot() {
                                         remarkPlugins={[remarkGfm]}
                                         components={{
                                             a: ({ node, ...props }) => (
-                                                <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#0c4728', textDecoration: 'underline' }} />
+                                                <a {...props} target="_blank" rel="noopener noreferrer" className={styles.messageLink} />
                                             ),
                                             p: ({ node, ...props }) => <p {...props} style={{ margin: 0 }} />
                                         }}
@@ -106,7 +102,11 @@ export default function ChatBot() {
                             </div>
                         ))}
                         {isLoading && (
-                            <div className={styles.typing}>El cantinero está pensando...</div>
+                            <div className={styles.typing}>
+                                <div className={styles.typingDot}></div>
+                                <div className={styles.typingDot}></div>
+                                <div className={styles.typingDot}></div>
+                            </div>
                         )}
                         <div ref={messagesEndRef} />
                     </div>
@@ -116,20 +116,16 @@ export default function ChatBot() {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder="Ej: ¿Cómo salió el clásico del 58?"
+                            placeholder="Ej: ¿Te acordás cómo fue la final del 58?"
                             className={styles.input}
                             disabled={isLoading}
                         />
                         <button type="submit" className={styles.sendButton} disabled={isLoading || !input.trim()}>
-                            <Send size={18} />
+                            <Send size={20} />
                         </button>
                     </form>
                 </div>
-            )}
-
-            <button className={styles.chatButton} onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
-            </button>
+            </div>
         </div>
     );
 }

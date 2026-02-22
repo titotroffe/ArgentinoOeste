@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import styles from './vintage-card-pdf.module.css';
 
 interface VintageCardPdfProps {
@@ -7,8 +7,11 @@ interface VintageCardPdfProps {
 }
 
 export const VintageCardPdf = forwardRef<HTMLDivElement, VintageCardPdfProps>(({ name, photoUrl }, ref) => {
-    // Generate random carnet number for effect if not real
-    const carnetNumber = Math.floor(1000 + Math.random() * 9000);
+    // Generate random carnet number for effect if not real (client-side only to avoid hydration mismatch)
+    const [carnetNumber, setCarnetNumber] = useState<number | string>('----');
+    useEffect(() => {
+        setCarnetNumber(Math.floor(1000 + Math.random() * 9000));
+    }, []);
 
     // Split name
     const nameParts = name ? name.split(' ') : ['Nombre', 'Apellido'];
@@ -18,12 +21,6 @@ export const VintageCardPdf = forwardRef<HTMLDivElement, VintageCardPdfProps>(({
     return (
         <div ref={ref} className={styles.sleeveWrapper} id="vintage-card-pdf">
             <div className={styles.pdfContainer}>
-                {/* Watermark Logo */}
-                <div className={styles.watermark}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/img/escudo.png" alt="Escudo" style={{ width: '100%', height: 'auto' }} />
-                </div>
-
                 <header className={styles.header}>
                     <span className={styles.titleTop}>Club Atlético</span>
                     <span className={styles.titleMain}>Argentino Oeste</span>

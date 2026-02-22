@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useImperativeHandle, forwardRef } from 'react';
+import React, { useRef, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import Image from 'next/image';
 import styles from '../../app/asociate/asociate.module.css';
 import html2canvas from 'html2canvas';
@@ -20,6 +20,11 @@ export interface MembershipCardHandle {
 const MembershipCard = forwardRef<MembershipCardHandle, MembershipCardProps>(({ name, photoUrl }, ref) => {
     const pdfRef = useRef<HTMLDivElement>(null);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [currentDateString, setCurrentDateString] = useState<string>('');
+
+    useEffect(() => {
+        setCurrentDateString(new Date().toLocaleString('es-ES', { month: 'long', year: 'numeric' }).toUpperCase().replace(' DE ', ' '));
+    }, []);
 
     useImperativeHandle(ref, () => ({
         downloadPdf: handleDownloadPdf
@@ -233,7 +238,7 @@ const MembershipCard = forwardRef<MembershipCardHandle, MembershipCardProps>(({ 
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '0.5rem', position: 'relative', zIndex: 2 }}>
                                     <span className={styles.vintageHeader} style={{ fontSize: '1rem', borderBottom: 'none', margin: 0, whiteSpace: 'nowrap' }}>Socio Activo</span>
                                     <span className={styles.vintageHeader} style={{ fontSize: '1rem', borderBottom: 'none', margin: 0, whiteSpace: 'nowrap', textTransform: 'uppercase' }}>
-                                        {new Date().toLocaleString('es-ES', { month: 'long', year: 'numeric' }).toUpperCase().replace(' DE ', ' ')}
+                                        {currentDateString}
                                     </span>
                                 </div>
 

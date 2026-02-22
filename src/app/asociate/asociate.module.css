@@ -102,11 +102,24 @@
     height: 400px;
     /* Base height for desktop */
     cursor: pointer;
-    transition: transform 0.3s;
     max-width: 90vw;
     /* Responsive constraint */
     aspect-ratio: 300 / 400;
     /* Maintain aspect ratio */
+    opacity: 0;
+    animation: fadeInBook 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes fadeInBook {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 480px) {
@@ -144,10 +157,11 @@
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+        linear-gradient(#ac2f2f, #ac2f2f),
         url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay, multiply, multiply;
+    background-blend-mode: overlay, multiply, multiply, normal;
     border-radius: 0 25px 25px 0;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -381,14 +395,15 @@
     /* Lighter Bordo/Red */
     align-items: center;
     justify-content: center;
-    /* Improved leather texture simulation using provided image */
+    /* Improved leather texture simulation using provided image, with linear-gradient fallback to prevent black flash */
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+        linear-gradient(#ac2f2f, #ac2f2f),
         url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay, multiply, multiply;
+    background-blend-mode: overlay, multiply, multiply, normal;
     /* Added overlay for shine */
     border-radius: 0 25px 25px 0;
     /* Multiply image with color */
@@ -426,10 +441,11 @@
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+        linear-gradient(#ac2f2f, #ac2f2f),
         url("/img/fondolibro.png");
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay, multiply, multiply;
+    background-blend-mode: overlay, multiply, multiply, normal;
     border-radius: 25px 0 0 25px;
 
     /* Spine shadow on the right side for inside left */

@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import styles from './Header.module.css';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [fechaHoy, setFechaHoy] = useState('');
+    const pathname = usePathname();
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -38,13 +40,14 @@ export default function Header() {
             </div>
 
             {/* Desktop Navbar */}
-            <nav className={`${styles.navbar} ${styles.desktopNav}`}>
+            <nav className={`${styles.navbar} ${styles.desktopNav}`} style={pathname === '/cantina' ? { marginBottom: 0 } : {}}>
                 <div className={styles.navContainer}>
                     <Link href="/" className={styles.navLink}>Portada</Link>
                     <Link href="/hemeroteca" className={styles.navLink}>Hemeroteca</Link>
                     <Link href="/archivo" className={styles.navLink}>Archivo</Link>
                     <Link href="/leyendas" className={styles.navLink}>Leyendas</Link>
                     <Link href="/palmares" className={styles.navLink}>Palmarés</Link>
+                    <Link href="/cantina" className={styles.navLink}>Cantina</Link>
                     <Link href="/asociate" className={`${styles.navLink} ${styles.highlightLink || ''}`} style={{ color: 'var(--club-green)', fontWeight: 'bold' }}>Hacete Socio</Link>
                 </div>
             </nav>
@@ -78,6 +81,7 @@ export default function Header() {
                         <Link href="/archivo" className={styles.mobileNavLink} onClick={toggleMenu}>Archivo</Link>
                         <Link href="/leyendas" className={styles.mobileNavLink} onClick={toggleMenu}>Leyendas</Link>
                         <Link href="/palmares" className={styles.mobileNavLink} onClick={toggleMenu}>Palmarés</Link>
+                        <Link href="/cantina" className={styles.mobileNavLink} onClick={toggleMenu}>Cantina</Link>
                         <Link href="/asociate" className={styles.mobileNavLink} onClick={toggleMenu} style={{ color: 'var(--club-green)', fontWeight: 'bold' }}>Hacete Socio</Link>
                     </nav>
                 </div>
