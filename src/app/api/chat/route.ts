@@ -465,10 +465,10 @@ export async function POST(req: NextRequest) {
                 const result = await chat.sendMessage(`Pregunta del hincha: ${message}`);
                 const text = result.response.text();
 
-                // Log into Sanity
-                try {
-                    const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
-                    if (SANITY_API_TOKEN) {
+                // Log into Sanity (Await it fully so Edge functions don't terminate prematurely)
+                const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
+                if (SANITY_API_TOKEN) {
+                    try {
                         const writeClient = client.withConfig({ token: SANITY_API_TOKEN, useCdn: false });
                         let ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip')?.trim() || '127.0.0.1';
                         if (ip === '::1') {
@@ -482,11 +482,12 @@ export async function POST(req: NextRequest) {
                             respuesta: text,
                             fecha: new Date().toISOString()
                         });
-                    } else {
-                        console.warn('No SANITY_API_TOKEN explicitly configured for logging.');
+                        console.log("Chat log saved successfully in Sanity.");
+                    } catch (logEx) {
+                        console.error('Failed to write chat log to Sanity:', logEx);
                     }
-                } catch (logEx) {
-                    console.error('Failed to write chat log to Sanity:', logEx);
+                } else {
+                    console.warn('No SANITY_API_TOKEN explicitly configured for logging.');
                 }
 
                 return NextResponse.json({ reply: text });
