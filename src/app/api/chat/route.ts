@@ -1,5 +1,5 @@
 ﻿import { GoogleGenerativeAI } from '@google/generative-ai';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import partidos from '@/data/partidos.json';
 import { client } from '@/sanity/lib/client';
 import { defineQuery } from 'next-sanity';
@@ -134,7 +134,7 @@ function toPlainText(blocks: any[] = []) {
         .join('\n\n')
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     try {
         const { message, history = [] } = await req.json();
 
@@ -464,6 +464,27 @@ export async function POST(req: Request) {
                 const chat = model.startChat({ history: geminiHistory });
                 const result = await chat.sendMessage(`Pregunta del hincha: ${message}`);
                 const text = result.response.text();
+
+                // Log into Sanity
+                try {
+                    const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
+                    if (SANITY_API_TOKEN) {
+                        const writeClient = client.withConfig({ token: SANITY_API_TOKEN, useCdn: false });
+                        const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip')?.trim() || '127.0.0.1';
+                        await writeClient.create({
+                            _type: 'chatLog',
+                            ip,
+                            mensaje: message,
+                            respuesta: text,
+                            fecha: new Date().toISOString()
+                        });
+                    } else {
+                        console.warn('No SANITY_API_TOKEN explicitly configured for logging.');
+                    }
+                } catch (logEx) {
+                    console.error('Failed to write chat log to Sanity:', logEx);
+                }
+
                 return NextResponse.json({ reply: text });
             } catch (error: any) {
                 console.warn(`Model ${modelName} failed:`, error.message);
