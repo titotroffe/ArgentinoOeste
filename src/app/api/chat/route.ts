@@ -470,7 +470,11 @@ export async function POST(req: NextRequest) {
                     const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
                     if (SANITY_API_TOKEN) {
                         const writeClient = client.withConfig({ token: SANITY_API_TOKEN, useCdn: false });
-                        const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip')?.trim() || '127.0.0.1';
+                        let ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip')?.trim() || '127.0.0.1';
+                        if (ip === '::1') {
+                            ip = '127.0.0.1';
+                        }
+
                         await writeClient.create({
                             _type: 'chatLog',
                             ip,
