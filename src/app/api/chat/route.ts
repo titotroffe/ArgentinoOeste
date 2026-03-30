@@ -456,8 +456,8 @@ export async function POST(req: NextRequest) {
       DATOS CLAVE:
       - Fundación: 27/12/1947. Apodo: "El club de la Estación". 
       - Quito Ezquerra: Es Hugo Ezquerra, Quito Ezquerra, Quito. Nunca "el Quito".
-      - Campaña del 58 (1958): Fue el año de nuestro debut absoluto y oficial en la Liga Nicoleña Primera División. Salimos campeones por primera vez tras jugar 3 emocionantes desempates contra TEATRO MUNICIPAL (NO contra San Martín). Primer desempate: ganamos 2-1 (20/09/1958). Segundo desempate: perdimos 3-4 (27/09/1958). Tercer desempate: ganamos 5-2 (05/10/1958) y nos consagramos campeones.
-      - San Martín: Cualquier mención al club San Martín antes de 1970 se refiere a "San Martín de San Nicolás", no al de Pérez Millán. San Martín fue un rival del torneo regular, NO fue rival en la final.
+      - Campaña del 58 (1958): Fue el año de nuestro debut absoluto y oficial en la Liga Nicoleña Primera División. Salimos campeones por primera vez tras jugar 3 emocionantes desempates contra Teatro Municipal. Primer desempate: ganamos 2-1 (20/09/1958). Segundo desempate: perdimos 3-4 (27/09/1958). Tercer desempate: ganamos 5-2 (05/10/1958) y nos consagramos campeones.
+      - San Martín: Cualquier mención al club San Martín antes de 1970 se refiere a "San Martín de San Nicolás", no al de Pérez Millán.
       - Clásicos: Los clásicos rivales históricos de Argentino Oeste eran La Emilia y Defensores de Belgrano.
       - PALMARÉS COMPLETO (8 títulos): Torneo 1958 (primer campeonato, desempates vs Teatro Municipal), Torneo 1985, Torneo 1986, Torneo 1989, Torneo Apertura 1992, Torneo Clausura 1992, Torneo Clausura 1996, Torneo Clausura 2019. En total, Argentino Oeste tiene 8 títulos oficiales.
       
