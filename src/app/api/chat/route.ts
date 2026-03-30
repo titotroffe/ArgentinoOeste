@@ -177,7 +177,7 @@ export async function POST(req: NextRequest) {
             sexto: 5, sexta: 5,
         };
         const isPrimerPartido = /\bprimer(a|o)?\s+partido|\bprimer(a|o)?\s+vez|\bprimer\s+enfrentamiento/.test(lowerMessage);
-        const isUltimoPartido = /\b[uú]ltim[ao]\s+partido|\b[uú]ltim[ao]\s+vez/.test(lowerMessage);
+        const isUltimoPartido = /\b[uú]ltim[ao]\s+partido|\b[uú]ltim[ao]\s+vez|\bfinal\b|\bdesempate(s)?\b|\bcampeonato\b/.test(lowerMessage);
         let ordinalIndex: number | null = null;
         for (const [word, idx] of Object.entries(ORDINALS)) {
             if (new RegExp(`\\b${word}\\b`).test(lowerMessage)) { ordinalIndex = idx; break; }
@@ -251,8 +251,7 @@ export async function POST(req: NextRequest) {
         // Always sort chronologically
         matchedPartidos = matchedPartidos.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
 
-        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia|lindo|gusta|barrio|campa[nñ]a|a[nñ]o|origen|fundaci)/i.test(message);
-
+        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia|lindo|gusta|barrio|campa[nñ]a|a[nñ]o|origen|fundaci|campe[oó]n)/i.test(message);
         // --- SELECT THE Nth MATCH ---
         let selectedMatch: (typeof matchedPartidos)[0] | null = null;
         let anchorMatch: (typeof matchedPartidos)[0] | null = null;
