@@ -179,6 +179,10 @@ export async function POST(req: NextRequest) {
         const isPrimerPartido = /\bprimer(a|o)?\s+partido|\bprimer(a|o)?\s+vez|\bprimer\s+enfrentamiento/.test(lowerMessage);
         const isUltimoPartido = /\b[uú]ltim[ao]\s+partido|\b[uú]ltim[ao]\s+vez/.test(lowerMessage);
         const isFinalQuery = /\bfinal(es)?\b|\bdesempate(s)?\b|\bcampeonato\b|\bcampe[oó]n(es)?\b|\bconsagraci|\bsalimos\s+campe/.test(lowerMessage);
+        // Detect "full campaign" requests: "campaña del 58", "todo el año 58", "campaña completa", etc.
+        const isCampaniaCompleta = /campa[nñ]a|temporada|\btodo\s+el\s+a[nñ]o|\btodos?\s+los\s+partidos/.test(lowerMessage);
+        const yearMatch = lowerMessage.match(/\b(19\d{2}|20\d{2})\b/) || lowerMessage.match(/\bdel\s+(\d{2})\b/);
+        const queriedYear = yearMatch ? (yearMatch[1].length === 2 ? 1900 + parseInt(yearMatch[1]) : parseInt(yearMatch[1])) : null;
         let ordinalIndex: number | null = null;
         for (const [word, idx] of Object.entries(ORDINALS)) {
             if (new RegExp(`\\b${word}\\b`).test(lowerMessage)) { ordinalIndex = idx; break; }
@@ -252,18 +256,28 @@ export async function POST(req: NextRequest) {
         // Always sort chronologically
         matchedPartidos = matchedPartidos.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
 
-        const isOpinionQuestion = /(favorit|mejor|recuerd|emoci|historia|lindo|gusta|barrio|campa[nñ]a|origen|fundaci)/i.test(message);
+        const isOpinionQuestion = /(favorit|mejor|recuerd|emoci|historia|lindo|gusta|barrio|origen|fundaci)/i.test(message);
         // --- SELECT THE Nth MATCH ---
         let selectedMatch: (typeof matchedPartidos)[0] | null = null;
         let anchorMatch: (typeof matchedPartidos)[0] | null = null;
         let contextSlice = matchedPartidos;
+        let isFullCampaignMode = false;
         
-        if (isFinalQuery) {
+        if (isCampaniaCompleta && queriedYear) {
+            // CAMPAÑA COMPLETA: traer TODOS los partidos de ese año
+            const allYearMatches = (partidos as Partido[]).filter(p => p.anio === queriedYear)
+                .sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
+            if (allYearMatches.length > 0) {
+                contextSlice = allYearMatches;
+                anchorMatch = null; // No anclar a un partido específico, buscar todo el año
+                isFullCampaignMode = true;
+            }
+        } else if (isFinalQuery) {
             // Cuando preguntan por la final / desempates / campeón, traer los 3 desempates del 58
             const desempates = (partidos as Partido[]).filter(p => p.instancia && /desempate/i.test(p.instancia));
             if (desempates.length > 0) {
                 contextSlice = desempates.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
-                anchorMatch = contextSlice[contextSlice.length - 1]; // El tercer desempate como anchor para buscar crónicas
+                anchorMatch = contextSlice[contextSlice.length - 1];
             } else {
                 contextSlice = matchedPartidos.slice(-3);
                 anchorMatch = contextSlice.length > 0 ? contextSlice[contextSlice.length - 1] : null;
@@ -316,12 +330,31 @@ export async function POST(req: NextRequest) {
         let dynamicNotasQuery: any = NOTAS_SUMMARY_QUERY;
         let queryParams = {};
 
-        if (anchorMatch) {
+        if (isFullCampaignMode && queriedYear) {
+            // CAMPAÑA COMPLETA: buscar TODAS las notas del año
+            const startDate = `${queriedYear}-01-01`;
+            const endDate = `${queriedYear}-12-31`;
+            dynamicNotasQuery = defineQuery(`
+                *[_type == "nota" && fecha >= $startDate && fecha <= $endDate] | order(fecha asc) [0..30] {
+                    titulo,
+                    bajada,
+                    fecha,
+                    categoria,
+                    "slug": slug.current,
+                    cuerpo,
+                    detallesPartido {
+                        local { nombre },
+                        visitante { nombre }
+                    }
+                }
+            `);
+            queryParams = { startDate, endDate };
+            process.stdout.write(`| FULL CAMPAIGN MODE: ${startDate} to ${endDate} |\n`);
+        } else if (anchorMatch) {
             const matchTs = parseFechaEspañola(anchorMatch.fecha);
             const startDate = new Date(matchTs - (1000 * 60 * 60 * 24)).toISOString().split('T')[0]; // -1 day
-            const endDate = new Date(matchTs + (1000 * 60 * 60 * 24 * 10)).toISOString().split('T')[0]; // +10 days (weekly archives)
+            const endDate = new Date(matchTs + (1000 * 60 * 60 * 24 * 10)).toISOString().split('T')[0]; // +10 days
 
-            // Find a significant word from the anchor match rival (e.g., "Paraná" from "Paraná")
             const rivalWords = anchorMatch.rival.split(' ');
             const significantRivalWord = rivalWords.find(w => w.length > 3) || rivalWords[0];
             const rivalSearchKey = normalize(significantRivalWord);
@@ -383,26 +416,25 @@ export async function POST(req: NextRequest) {
                 const isCronica = n.categoria === 'Crónica' || isHemeroteca;
 
                 // Tighter correlation logic:
+                if (isFullCampaignMode) {
+                    // En modo campaña completa, aceptar todas las crónicas/hemerotecas del año
+                    return isCronica || matchesKeyword;
+                }
+
                 if (anchorMatch && isCronica) {
                     const matchTs = parseFechaEspañola(anchorMatch.fecha);
                     const notaTs = parseFechaEspañola(n.fecha);
                     const diffDays = (notaTs - matchTs) / (1000 * 60 * 60 * 24);
 
-                    // User Rule: Must be within [MatchDate, MatchDate + 5 days]
                     const inStrictWindow = (diffDays >= 0 && diffDays <= 5);
-
-                    // If we have an anchor match, we MUST be in the window for this note to be relevant.
-                    // This prevents April notes from showing up for a July match.
                     if (!inStrictWindow) return false;
-
-                    // Within window, we accept Hemeroteca or keyword matches
                     return isHemeroteca || matchesKeyword;
                 }
 
                 // If no anchor match, use keywords
                 return matchesKeyword || (isOpinionQuestion && isCronica);
             })
-            .slice(0, MAX_NOTAS_CONTEXT)
+            .slice(0, isFullCampaignMode ? 10 : MAX_NOTAS_CONTEXT)
             .map(n => {
                 const bodyText = n.cuerpo ? toPlainText(n.cuerpo) : '';
                 const fullUrl = n.slug ? `http://argentinooeste.com.ar/nota/${n.slug}` : null;
