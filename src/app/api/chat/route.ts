@@ -177,7 +177,8 @@ export async function POST(req: NextRequest) {
             sexto: 5, sexta: 5,
         };
         const isPrimerPartido = /\bprimer(a|o)?\s+partido|\bprimer(a|o)?\s+vez|\bprimer\s+enfrentamiento/.test(lowerMessage);
-        const isUltimoPartido = /\b[uú]ltim[ao]\s+partido|\b[uú]ltim[ao]\s+vez|\bfinal\b|\bdesempate(s)?\b|\bcampeonato\b/.test(lowerMessage);
+        const isUltimoPartido = /\b[uú]ltim[ao]\s+partido|\b[uú]ltim[ao]\s+vez/.test(lowerMessage);
+        const isFinalQuery = /\bfinal(es)?\b|\bdesempate(s)?\b|\bcampeonato\b|\bcampe[oó]n(es)?\b|\bconsagraci|\bsalimos\s+campe/.test(lowerMessage);
         let ordinalIndex: number | null = null;
         for (const [word, idx] of Object.entries(ORDINALS)) {
             if (new RegExp(`\\b${word}\\b`).test(lowerMessage)) { ordinalIndex = idx; break; }
@@ -251,13 +252,23 @@ export async function POST(req: NextRequest) {
         // Always sort chronologically
         matchedPartidos = matchedPartidos.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
 
-        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia|lindo|gusta|barrio|campa[nñ]a|a[nñ]o|origen|fundaci|campe[oó]n)/i.test(message);
+        const isOpinionQuestion = /(favorit|mejor|recuerd|emoci|historia|lindo|gusta|barrio|campa[nñ]a|origen|fundaci)/i.test(message);
         // --- SELECT THE Nth MATCH ---
         let selectedMatch: (typeof matchedPartidos)[0] | null = null;
         let anchorMatch: (typeof matchedPartidos)[0] | null = null;
         let contextSlice = matchedPartidos;
         
-        if (ordinalIndex !== null && matchedPartidos.length > ordinalIndex) {
+        if (isFinalQuery) {
+            // Cuando preguntan por la final / desempates / campeón, traer los 3 desempates del 58
+            const desempates = (partidos as Partido[]).filter(p => p.instancia && /desempate/i.test(p.instancia));
+            if (desempates.length > 0) {
+                contextSlice = desempates.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
+                anchorMatch = contextSlice[contextSlice.length - 1]; // El tercer desempate como anchor para buscar crónicas
+            } else {
+                contextSlice = matchedPartidos.slice(-3);
+                anchorMatch = contextSlice.length > 0 ? contextSlice[contextSlice.length - 1] : null;
+            }
+        } else if (ordinalIndex !== null && matchedPartidos.length > ordinalIndex) {
             selectedMatch = matchedPartidos[ordinalIndex];
             anchorMatch = selectedMatch;
             contextSlice = [selectedMatch];
@@ -445,9 +456,14 @@ export async function POST(req: NextRequest) {
       DATOS CLAVE:
       - Fundación: 27/12/1947. Apodo: "El club de la Estación". 
       - Quito Ezquerra: Es Hugo Ezquerra, Quito Ezquerra, Quito. Nunca "el Quito".
-      - Campaña del 58 (1958): Fue el año de nuestro debut absoluto y oficial en la Liga Nicoleña Primera División. Jugamos todo el año de forma espectacular y la campaña la coronamos saliendo campeones por primera vez tras jugar emocionantes desempates.
-      - San Martín: Cualquier mención al club San Martín antes de 1970 se refiere a "San Martín de San Nicolás", no al de Pérez Millán.
+      - Campaña del 58 (1958): Fue el año de nuestro debut absoluto y oficial en la Liga Nicoleña Primera División. Salimos campeones por primera vez tras jugar 3 emocionantes desempates contra TEATRO MUNICIPAL (NO contra San Martín). Primer desempate: ganamos 2-1 (20/09/1958). Segundo desempate: perdimos 3-4 (27/09/1958). Tercer desempate: ganamos 5-2 (05/10/1958) y nos consagramos campeones.
+      - San Martín: Cualquier mención al club San Martín antes de 1970 se refiere a "San Martín de San Nicolás", no al de Pérez Millán. San Martín fue un rival del torneo regular, NO fue rival en la final.
       - Clásicos: Los clásicos rivales históricos de Argentino Oeste eran La Emilia y Defensores de Belgrano.
+      
+      REGLA ANTI-ALUCINACIÓN (OBLIGATORIO):
+      - NUNCA inventes datos de partidos, resultados, goles o goleadores que no estén en el "Contexto Histórico" de abajo.
+      - Si no tenés datos de un partido específico, decí honestamente: "Eso no lo tengo en el archivo, viejo, pero si me das más datos te lo busco."
+      - NO mezcles datos de un partido con otro. Cada partido es único.
 
       Contexto Histórico (Tu archivo de resultados):
       ${relevantMatches.length > 0 ? relevantMatches.join('\n') : 'No tengo el resultado exacto anotado.'}
