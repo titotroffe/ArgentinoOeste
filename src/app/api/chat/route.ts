@@ -1,4 +1,4 @@
-﻿import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 import partidos from '@/data/partidos.json';
 import { client } from '@/sanity/lib/client';
@@ -251,16 +251,35 @@ export async function POST(req: NextRequest) {
         // Always sort chronologically
         matchedPartidos = matchedPartidos.sort((a, b) => parseFechaEspañola(a.fecha) - parseFechaEspañola(b.fecha));
 
+        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia|lindo|gusta|barrio|campa[nñ]a|a[nñ]o|origen|fundaci)/i.test(message);
+
         // --- SELECT THE Nth MATCH ---
         let selectedMatch: (typeof matchedPartidos)[0] | null = null;
+        let anchorMatch: (typeof matchedPartidos)[0] | null = null;
         let contextSlice = matchedPartidos;
+        
         if (ordinalIndex !== null && matchedPartidos.length > ordinalIndex) {
             selectedMatch = matchedPartidos[ordinalIndex];
+            anchorMatch = selectedMatch;
             contextSlice = [selectedMatch];
         } else if (isUltimoPartido && matchedPartidos.length > 0) {
             selectedMatch = matchedPartidos[matchedPartidos.length - 1];
+            anchorMatch = selectedMatch;
             contextSlice = [selectedMatch];
+        } else if (isOpinionQuestion) {
+            // Randomizar partidos para evitar el embudo del debut en abril
+            if (matchedPartidos.length > 0) {
+                anchorMatch = matchedPartidos[Math.floor(Math.random() * matchedPartidos.length)];
+                contextSlice = [anchorMatch];
+            } else {
+                const matches1958 = (partidos as Partido[]).filter(p => p.anio === 1958);
+                if (matches1958.length > 0) {
+                    anchorMatch = matches1958[Math.floor(Math.random() * matches1958.length)];
+                    contextSlice = [anchorMatch];
+                }
+            }
         } else {
+            anchorMatch = matchedPartidos.length > 0 ? matchedPartidos[0] : null;
             contextSlice = matchedPartidos.slice(0, MAX_MATCHES_CONTEXT);
         }
 
@@ -281,7 +300,6 @@ export async function POST(req: NextRequest) {
         });
 
         // The anchor match drives chronicle date-correlation in the hemeroteca
-        const anchorMatch = selectedMatch ?? (matchedPartidos.length > 0 ? matchedPartidos[0] : null);
 
         // --- FETCH LEGENDS AND DYNAMIC NOTES ---
         // If we have an anchor match, we do a targeted Sanity query for that date/rival
@@ -339,7 +357,6 @@ export async function POST(req: NextRequest) {
                 return `- ${l.nombre} (${l.rol}): ${fullText?.substring(0, 2000)}...`;
             });
 
-        const isOpinionQuestion = /(favorit|mejor|gol|recuerd|parti[d]|emoci|historia)/i.test(message);
         const notaKeywords = [...new Set([...allKeywords, ...rivalQueryWords])];
 
         const sortedNotas = [...finalNotas].sort((a, b) => {
@@ -429,6 +446,9 @@ export async function POST(req: NextRequest) {
       DATOS CLAVE:
       - Fundación: 27/12/1947. Apodo: "El club de la Estación". 
       - Quito Ezquerra: Es Hugo Ezquerra, Quito Ezquerra, Quito. Nunca "el Quito".
+      - Campaña del 58 (1958): Fue el año de nuestro debut absoluto y oficial en la Liga Nicoleña Primera División. Jugamos todo el año de forma espectacular y la campaña la coronamos saliendo campeones por primera vez tras jugar emocionantes desempates.
+      - San Martín: Cualquier mención al club San Martín antes de 1970 se refiere a "San Martín de San Nicolás", no al de Pérez Millán.
+      - Clásicos: Los clásicos rivales históricos de Argentino Oeste eran La Emilia y Defensores de Belgrano.
 
       Contexto Histórico (Tu archivo de resultados):
       ${relevantMatches.length > 0 ? relevantMatches.join('\n') : 'No tengo el resultado exacto anotado.'}
